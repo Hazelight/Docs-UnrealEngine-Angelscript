@@ -27,7 +27,7 @@ and `Example_MovingObject.as`.
 ## Example Actor Class
 ```
 /*
- * This is an example of an object that simple moves left
+ * This is an example of an object that simply moves left
  * and right over time. Several features of script classes
  * are used here, and this is an easy way to demonstrate
  * hot reload as well by changing the behavior.

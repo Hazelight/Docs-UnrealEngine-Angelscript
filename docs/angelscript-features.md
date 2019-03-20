@@ -42,7 +42,7 @@ class AEventActor : AActor
 In angelscript, when accessing an 'Object.Property', it will automatically be rewritten
 as a call to 'Object.GetProperty()' if appropriate.
 
-Simalarly, attempting to set a property can automatically call the 'SetProperty()' function
+Similarly, attempting to set a property can automatically call the 'SetProperty()' function
 (provided it only takes a single argument).
 
 This works both for functions exposed to angelscript from C++ as well as functions declared
