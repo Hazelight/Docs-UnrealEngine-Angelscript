@@ -5,6 +5,7 @@ nav:
   - 'getting-started.md'
   - 'angelscript-features.md'
   - 'cpp-usage.md'
+  - 'using-precompiled-data.md'
   - 'development-status.md'
   - 'license.md'
   - 'Discord Server': 'https://discord.gg/39wmC2e'

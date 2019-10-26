@@ -3,7 +3,7 @@ Title: Angelscript Features
 # Angelscript Features
 ### Overriding Functions
 #### BlueprintNativeEvent / BlueprintImplementableEvent
-Any UFUNCTION() declared as a blueprint event in C++ can be overridden by an angelscript subclass.
+Any `UFUNCTION()` declared as a blueprint event in C++ can be overridden by an angelscript subclass.
 
 To do so, the function in angelscript must be declared as `UFUNCTION(BlueprintOverride)`, to indicate
 that it wants to override a blueprint event.
@@ -39,10 +39,10 @@ class AEventActor : AActor
 ```
 
 ### Property Accessors
-In angelscript, when accessing an 'Object.Property', it will automatically be rewritten
-as a call to 'Object.GetProperty()' if appropriate.
+In angelscript, when accessing an `Object.Property`, it will automatically be rewritten
+as a call to `Object.GetProperty()` if appropriate.
 
-Similarly, attempting to set a property can automatically call the 'SetProperty()' function
+Similarly, attempting to set a property can automatically call the `SetProperty()` function
 (provided it only takes a single argument).
 
 This works both for functions exposed to angelscript from C++ as well as functions declared
@@ -87,7 +87,7 @@ will automatically be initialized at angelscript compile time, removing
 the nametable lookup from runtime.
 
 Name literals have many uses. An example of using a name literal to bind
-a delegate to a UFUNCTION() in angelscript:
+a delegate to a `UFUNCTION()` in angelscript:
 
 Example:
 
@@ -117,14 +117,14 @@ class ANameLiteralActor : AActor
 ### Unreal Network
 Unreal networking features are supported to a similar extent as they are in blueprint.
 
-UFUNCTION()s can be marked as `NetMulticast`, `Client`, `Server` and/or `BlueprintAuthorityOnly`
+`UFUNCTION()`s can be marked as `NetMulticast`, `Client`, `Server` and/or `BlueprintAuthorityOnly`
 in their specifiers, functioning much the same as they do in C++. The function body will
 automatically be used as an RPC, whether calling it from angelscript or blueprint.
 
 Unlike C++, angelscript RPC functions default to being reliable. If you want an unreliable
-RPC message, put the `Unreliable` specifier in the UFUNCTION() declaration.
+RPC message, put the `Unreliable` specifier in the `UFUNCTION()` declaration.
 
-UPROPERTY()s can be marked as `Replicated`. Optionally, you can set a condition for 
+`UPROPERTY()`s can be marked as `Replicated`. Optionally, you can set a condition for 
 their replication as well, similar to the dropdown for blueprint properties. This can be
 done with the `ReplicationCondition` specifier.
 
@@ -148,6 +148,16 @@ class AReplicatedActor : AActor
 	// Only replicates to the owner
 	UPROPERTY(Replicated, ReplicationCondition = OwnerOnly)
 	int ReplicatedInt = 0;
+
+	// Calls OnRep_ReplicatedValue whenever it is replicated
+	UPROPERTY(Replicated, ReplicatedUsing = OnRep_ReplicatedValue)
+	int ReplicatedValue = 0;
+
+	UFUNCTION()
+	void OnRep_ReplicatedValue()
+	{
+		Print("Replicated Value has changed!");
+	}
 }
 ```
 
@@ -167,3 +177,8 @@ Available conditions for `ReplicationCondition` match the ELifetimeCondition enu
 - SimulatedOnlyNoReplay
 - SimulatedOrPhysicsNoReplay
 - SkipReplay
+
+
+It is also possible to specify `ReplicatedUsing` on a replicated `UPROPERTY` that will be called whenever
+the value of that property is replicated. Note that any function used with `ReplicatedUsing` must be
+declared as a `UFUNCTION()` so it is visible to unreal.

@@ -16,30 +16,28 @@ in your usage of it.
 
 ## Status and Future Plans
 ### Packaged Builds and Performance
-Running angelscript in a packaged/cooked build is currently functional, provided the 
+Running angelscript in a packaged/cooked build is currently fully functional, provided the 
 `ProjectName/Script/` folder is staged or copied into the resulting build.
 
-However, there are several areas in which performance improvements will have to be
-made in the future. These include the script compile time at engine startup as well
-as script runtime performance.
+See the [Using Precompiled Data](/using-precompiled-data) page for steps to take
+to improve startup and execution performance in packaged builds.
 
-For context, at the time of this writing we are running about 100,000 lines of
-angelscript code in our project. Compiling it all takes roughly 5-6 seconds on
-engine startup. We have found angelscript to vastly outperform equivalent blueprint
-script at runtime, but improvements are still possible.
+For context, at the time of this writing we have more than 300,000 lines of
+angelscript code in our project at hazelight. Compiling it all on engine startup
+without using precompiled data takes roughly 10-15 seconds on Windows. Using
+precompiled data this is reduced to around 5 seconds of startup time.
 
-Plans have been made for this, but are unlikely to be implemented until later in our game's development
-cycle, when they become necessary. No guarantees on when or what.
+We have found angelscript to vastly outperform equivalent blueprint
+script at runtime. When using precompiled data to create generated C++,
+runtime performance approaches that of native C++ with a small overhead when traversing
+back and forth with the blueprint virtual machine.
 
-### Console Support
-We have preliminary builds running with angelscript on PS4 and Xbox One consoles,
-but we will not be doing a significant amount of testing on these until later.
+### Platform Support
+Aside from Windows, the angelscript plugin has been succesfully built for and is regularly tested on Xbox One and PS4.
+There are currently no plans to extend this to any other platforms, but if you are interested in working on supporting
+one yourself, feel free to [join the discord server](https://discord.gg/39wmC2).
 
-Start up time performance improvements will be extra-critical for shipping on consoles,
-as they are significantly slower than PCs overall.
 
 ## Known Issues
-* Changing a 'DefaultComponent' to a different class without changing the name of the variable can cause it to become uneditable in derived blueprints.
-  Change the name of the component property when changing the class to work around this.
 * Super::Function() calls only work for parent functions in angelscript. It is not possible to call the C++ super function when overriding a BlueprintNativeEvent.
 * Unreal Interfaces (IInterface/UInterface) are not supported for use in angelscript at this time.
