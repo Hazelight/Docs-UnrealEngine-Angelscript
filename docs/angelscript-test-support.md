@@ -34,7 +34,9 @@ Furthermore, the tests show up under the category "Angelscript" in the Test Auto
 You will need to install that one into Unreal. See [https://docs.unrealengine.com/en-US/Programming/Automation/UserGuide/index.html](https://docs.unrealengine.com/en-US/Programming/Automation/UserGuide/index.html)
 
 You can also run tests from the command line:
-`Engine\Binaries\Win64\UE4Editor-Cmd.exe \Path\To\your.uproject -NullRHI -NoSound -NoSplash -ExecCmds="Automation RunTests Angelscript.UnitTests" -TestExit "Automation Test Queue Empty+Found 0 Automation Tests, based on" -unattended -stdout -as-exit-on-error`
+```
+Engine\Binaries\Win64\UE4Editor-Cmd.exe \Path\To\your.uproject -NullRHI -NoSound -NoSplash -ExecCmds="Automation RunTests Angelscript.UnitTests" -TestExit "Automation Test Queue Empty+Found 0 Automation Tests, based on" -unattended -stdout -as-exit-on-error
+```
 
 ## Installing a Custom Game Mode for Unit Tests
 You can add this line to one of your .ini files in your project to get a game mode in your tests:
