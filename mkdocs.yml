@@ -8,7 +8,7 @@ nav:
   - 'using-precompiled-data.md'
   - 'angelscript-test-support.md'
   - 'development-status.md'
-  - 'license.md'  
+  - 'license.md'
   - 'Discord Server': 'https://discord.gg/39wmC2e'
 theme: readthedocs
 extra_css: [extra.css]
