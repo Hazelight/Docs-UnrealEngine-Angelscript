@@ -58,8 +58,9 @@ void IntegrationTest_MyTestName(FIntegrationTest& T)
 ```
 
 Then you need to add a test map MyTestName.umap to /Content/Testing/ (create the dir if you don't have it
-in your project yet). You can retrieve placed actors like this (or spawn them in the test):
+in your project yet). The map name is always the part after IntegrationTest_ in the test name.
 
+You can retrieve placed actors like this (or spawn them in the test):
 ```jsx
 // Looks up an actor in the map
 AActor GetActorByLabel(UClass Class, const FName& Label)
@@ -160,7 +161,7 @@ class UGetsShotXTimes : ULatentAutomationCommand
     }
 
     UFUNCTION(BlueprintOverride)
-    bool IsSatisfied()
+    bool Update()
     {
         return BulletSponge.NumTimesHit > ExpectedNumHits;
     }
@@ -173,7 +174,7 @@ class UGetsShotXTimes : ULatentAutomationCommand
 }
 ```
 
-The game engine will keep ticking as long as IsSatisfied returns false. This means you can wait on any condition you can think of. The default timeout is five seconds though, so you can't wait for too long.
+The game engine will keep ticking as long as Update returns false. This means you can wait on any condition you can think of. The default timeout is five seconds though, so you can't wait for too long.
 
 You can specify `default bAllowTimeout = true` on a latent command to allow it to time out. This is useful if you want to test that something is *not* happening
 (e.g. check actor doesn't move out of bounds during 5 seconds).
