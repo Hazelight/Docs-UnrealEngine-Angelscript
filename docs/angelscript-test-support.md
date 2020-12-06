@@ -57,8 +57,15 @@ void IntegrationTest_MyTestName(FIntegrationTest& T)
 }
 ```
 
-Then you need to add a test map MyTestName.umap to /Content/Testing/ (create the dir if you don't have it
-in your project yet). The map name is always the part after IntegrationTest_ in the test name.
+Then you need to add a test map IntegrationTest_MyTestName.umap to /Content/Testing/ (create the dir if you don't have it
+in your project yet). The map name is always the same as the test name, with .umap added.
+
+You can also configure the integration test map dir with this setting in your .ini files:
+
+```jsx
+[/Script/AngelscriptCode.AngelscriptTestSettings]
+IntegrationTestMapRoot=/Game/Testing/
+```
 
 You can retrieve placed actors like this (or spawn them in the test):
 ```jsx
