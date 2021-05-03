@@ -3,7 +3,8 @@ Title: Angelscript Test Support
 # Angelscript Test Support
 Angelscript features a xUnit-style unit testing framework. There is also an
 integration test framework that can play back game scenarios and wait for
-some condition to occur.
+some condition to occur. You can generate code coverage reports for test
+runs as well.
 
 # Unit Tests
 ```jsx
@@ -190,3 +191,17 @@ You can specify `default bAllowTimeout = true` on a latent command to allow it t
 These don't run on hot reload like unit tests, so you need to invoke them through the Test Automation window in Unreal. They are run just like unit tests, see above.
 
 To run integration tests from the command line, run the same line as for unit tests but replace Angelscript.UnitTests with Angelscript.IntegrationTests.
+
+# Code Coverage
+
+Enable code coverage in Project Settings > Editor > Angelscript Test settings (or pass -as-enable-code-coverage on the command line). Note, code coverage slows down editor startup by ~20 seconds so remember to turn it off later.
+![CoverageToggle](/img/coverage-toggle.png)
+
+Run some tests as described above. The editor will write a report to Saved/CodeCoverage. Note: it's overwritten each time you start a new test run.
+![CoverageDir](/img/coverage-dir.png)
+
+Open index.html to see a summary for all your angelscript.
+![CoverageIndex](/img/coverage-index.png)
+
+Open individual files to see their line coverage.
+![CoverageDir](/img/coverage-file.png)
