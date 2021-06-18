@@ -171,6 +171,8 @@ class UGetsShotXTimes : ULatentAutomationCommand
     UFUNCTION(BlueprintOverride)
     bool Update()
     {
+        // Note: actors can get DestroyActor'd at any time, so fail nicely if that happens!
+        ensure(System::IsValid(BulletSponge));
         return BulletSponge.NumTimesHit > ExpectedNumHits;
     }
 
@@ -188,9 +190,42 @@ You can specify `default bAllowTimeout = true` on a latent command to allow it t
 (e.g. check actor doesn't move out of bounds during 5 seconds).
 
 ## Running Integration Tests
-These don't run on hot reload like unit tests, so you need to invoke them through the Test Automation window in Unreal. They are run just like unit tests, see above.
+Integration tests don't run on hot reload like unit tests, so you need to invoke them through the Test Automation window in Unreal. They are run just like unit tests, see above.
 
 To run integration tests from the command line, run the same line as for unit tests but replace Angelscript.UnitTests with Angelscript.IntegrationTests.
+
+## Complex Integration Tests
+You can also generate test cases dynamically:
+
+```jsx
+void ComplexIntegrationTest_PotionsAreTooStrongForKnight_GetTests(TArray<FString>& OutTestCommands)
+{
+     for (APotion Potion: MyGame::GetPotionRegistry().GetAllPotions())
+     {
+         OutTestCommands.Add(Potion.GetName().ToString());
+     }
+}
+
+void ComplexIntegrationTest_PotionsAreTooStrongForKnight(FIntegrationTest& T)
+{
+    FString PotionName = T.GetParam();
+    APotion Potion = MyGame::GetPotionRegistry().LookupPotion(PotionName);
+    AKnight Knight = Cast<AKnight>(GetActorByLabel(AKnight::StaticClass(), n"Knight"));
+    AActor PotionSeller = GetActorByLabel(AActor::StaticClass(), n"PotionSeller");
+
+    // Order the knight to walk over to the potion seller and try to buy a potion.
+    Knight.BuyPotionFrom(PotionSeller, Potion);
+    T.AddLatentAutomationCommand(UExpectResponse("My potions are too strong for you traveller.", Knight, PotionSeller));
+}
+```
+
+If we assume you have three potions in your potion registry, this generates three test cases:
+
+```jsx
+Angelscript.IntegrationTest.Your.Path.ComplexIntegrationTest_PotionsAreTooStrongForKnight[DA_Potion1]
+Angelscript.IntegrationTest.Your.Path.ComplexIntegrationTest_PotionsAreTooStrongForKnight[DA_Potion2]
+Angelscript.IntegrationTest.Your.Path.ComplexIntegrationTest_PotionsAreTooStrongForKnight[DA_Potion3]
+```
 
 # Code Coverage
 
