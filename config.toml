@@ -1,0 +1,10 @@
+base_url = "https://angelscript.hazelight.se"
+title = "Unreal Engine Angelscript"
+compile_sass = true
+build_search_index = true
+
+[markdown]
+highlight_code = true
+
+[extra]
+logo = "angelscript_unreal.png"

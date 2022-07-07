@@ -1,13 +1,17 @@
-Title: Angelscript Test Support
++++
+title = "Script Tests"
+weight = 200
+sort_by = "weight"
++++
 
 # Angelscript Test Support
 Angelscript features a xUnit-style unit testing framework. There is also an
 integration test framework that can play back game scenarios and wait for
 some condition to occur. You can generate code coverage reports for test
-runs as well.
+runs as well. `FName`
 
 # Unit Tests
-```jsx
+```cpp
 void Test_NameOfTheTestCase(FUnitTest& T)
 {
     // Fails the test.
@@ -52,7 +56,7 @@ Each integration test has a map where you can draw up any geometry or place any 
 
 Add this to for instance MyTestName_IntegrationTest.as:
 
-```jsx
+```cpp
 void IntegrationTest_MyTestName(FIntegrationTest& T)
 {	
 }
@@ -63,13 +67,13 @@ in your project yet). The map name is always the same as the test name, with .um
 
 You can also configure the integration test map dir with this setting in your .ini files:
 
-```jsx
+```ini
 [/Script/AngelscriptCode.AngelscriptTestSettings]
 IntegrationTestMapRoot=/Game/Testing/
 ```
 
 You can retrieve placed actors like this (or spawn them in the test):
-```jsx
+```cpp
 // Looks up an actor in the map
 AActor GetActorByLabel(UClass Class, const FName& Label)
 {
@@ -118,7 +122,7 @@ These execute in sequence. Each action can take multiple engine frames to execut
 
 The test can enqueue latent commands of its own:
 
-```jsx
+```cpp
 void IntegrationTest_AlienShootsRepeatedly(FIntegrationTest& T)
 { 
     AActor A = GetActorByLabel(ABulletSponge::StaticClass(), n"BulletSponge");
@@ -138,7 +142,7 @@ The action is enqueued using `T.AddLatentAutomationCommand`. The set of latent a
 
 AddLatentAutomationCommand takes a `ULatentAutomationCommand`:
 
-```jsx
+```cpp
 UCLASS()
 class ABulletSponge : AStaticMeshActor
 {
@@ -197,7 +201,7 @@ To run integration tests from the command line, run the same line as for unit te
 ## Complex Integration Tests
 You can also generate test cases dynamically:
 
-```jsx
+```cpp
 void ComplexIntegrationTest_PotionsAreTooStrongForKnight_GetTests(TArray<FString>& OutTestCommands)
 {
      for (APotion Potion: MyGame::GetPotionRegistry().GetAllPotions())
@@ -221,22 +225,25 @@ void ComplexIntegrationTest_PotionsAreTooStrongForKnight(FIntegrationTest& T)
 
 If we assume you have three potions in your potion registry, this generates three test cases:
 
-```jsx
+```
 Angelscript.IntegrationTest.Your.Path.ComplexIntegrationTest_PotionsAreTooStrongForKnight[DA_Potion1]
 Angelscript.IntegrationTest.Your.Path.ComplexIntegrationTest_PotionsAreTooStrongForKnight[DA_Potion2]
 Angelscript.IntegrationTest.Your.Path.ComplexIntegrationTest_PotionsAreTooStrongForKnight[DA_Potion3]
 ```
 
 # Code Coverage
-
 Enable code coverage in Project Settings > Editor > Angelscript Test settings (or pass -as-enable-code-coverage on the command line). Note, code coverage slows down editor startup by ~20 seconds so remember to turn it off later.
+
 ![CoverageToggle](/img/coverage-toggle.png)
 
 Run some tests as described above. The editor will write a report to Saved/CodeCoverage. Note: it's overwritten each time you start a new test run.
+
 ![CoverageDir](/img/coverage-dir.png)
 
 Open index.html to see a summary for all your angelscript.
+
 ![CoverageIndex](/img/coverage-index.png)
 
 Open individual files to see their line coverage.
+
 ![CoverageDir](/img/coverage-file.png)

@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ get_url(path="docs.css") | safe }}">
+    <link rel="icon" href="{{ get_url(path="favicon.svg") | safe }}">
+    <title>{% block title -%}{{ config.title }}{% endblock -%}</title>
+</head>
+<body>
+	<main>
+		<nav>
+			<a href="{{ config.base_url }}">
+				<img src="{{get_url(path = config.extra.logo)}}" alt=""/>
+			</a>
+
+			<ul>
+				<li>
+					<a href="{{ config.base_url }}">Home</a>
+				</li>
+				<li>
+					<a href="https://discord.gg/39wmC2e">Join Discord Server</a>
+				</li>
+			</ul>
+
+			{% set root = get_section(path="_index.md") -%}
+			{% for p in root.subsections -%}
+				{% set section = get_section(path=p) -%}
+				<label>{{ section.title }}</label>
+				<ul>
+				{% for page in section.pages -%}
+				<li {% if current_path == page.path %}class="active"{% endif %}>
+					<a href="{{ page.permalink | safe }}">{{ page.title }}</a>
+				</li>
+				{% endfor -%}
+				</ul>
+			{% endfor -%}
+		</nav>
+		<article>
+			{% block content -%}
+			{{ section.content | safe }}
+			{% endblock -%}
+		</article>
+	</main>
+</body>

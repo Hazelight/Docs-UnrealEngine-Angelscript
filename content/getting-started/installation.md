@@ -1,4 +1,7 @@
-Title: Installation
++++
+title = "Installation"
+weight = 10
++++
 
 # Installation
 ## Getting Unreal Engine Source Access
@@ -7,8 +10,7 @@ You will need to get access to unreal engine source code to be able to access th
 version of the engine used in this project.
 
 To get source code access, follow this guide from Epic Games:
-
-[https://www.unrealengine.com/en-US/ue4-on-github](https://www.unrealengine.com/en-US/ue4-on-github)
+[https://www.unrealengine.com/en-US/ue-on-github](https://www.unrealengine.com/en-US/ue-on-github)
 
 
 ## Downloading UnrealEngine-Angelscript
@@ -20,7 +22,7 @@ Alternatively, clone the [GitHub Repository](https://github.com/Hazelight/Unreal
 and build the unreal editor using visual studio as usual.
 
 Note that you will need to build from source yourself if you want to use any additional plugins.
-This fork will not be compatible with any binary plugin distributions.
+This fork will not be compatible with any binary plugin distributions from the unreal marketplace.
 
 
 ## Installing the Visual Studio Code Extension
