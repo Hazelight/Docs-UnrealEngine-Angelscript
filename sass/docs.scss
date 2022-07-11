@@ -96,6 +96,8 @@ div.code_block, pre > code {
 	white-space: pre;
 	max-width: 60em;
 	overflow-x: auto;
+	font-family: Consolas, 'Courier New', monospace !important;
+	font-size: 16px !important;
 }
 
 blockquote
@@ -114,4 +116,29 @@ blockquote
 		padding-left: 1.5rem;
 		padding-right: 1.5rem;
 	}
+}
+
+kbd {
+	background: #2e2e2e;
+	color: #dedede;
+	padding: 2px 8px 2px 8px;
+	font-weight: bold;
+	border-radius: 5px;
+}
+
+.zola-anchor {
+	opacity: 0%;
+	margin-left: 0.5em;
+	margin-top: 0;
+	font-size: 80%;
+}
+
+h1:hover .zola-anchor,
+h2:hover .zola-anchor,
+h3:hover .zola-anchor,
+h4:hover .zola-anchor
+{
+	opacity: 100%;
+	transition: 0.3s;
+	transition-delay: 0.1s;
 }

@@ -7,39 +7,14 @@ sort_by = "weight"
 # Functions and BlueprintEvents
 ## Plain Script Functions
 Functions can be declared as methods in a class or globally.
-By default any function you declare can be called from script but is not accessible to blueprint.
+By default any function you declare can only be called from script and is not accessible to blueprint.
 
-```cpp
-class AExampleActor : AActor
-{
-	void MyMethod()
-	{
-		MyGlobalFunction(Actor);
-	}
-}
-
-void MyGlobalFunction(AActor Actor)
-{
-	if (!Actor.IsHidden())
-	{
-		Actor.DestroyActor();
-	}
-}
-```
+<div class="code_block" style="color: #d4d4d4;background-color: #1e1e1e;font-family: Consolas, 'Courier New', monospace;font-weight: normal;font-size: 16px;line-height: 19px;white-space: pre;"><div><span style="color: #569cd6;">class</span><span style="color: #d4d4d4;"> </span><span style="color: #4ec9b0;">AExampleActor</span><span style="color: #d4d4d4;"> : </span><span style="color: #4ec9b0;">AActor</span></div><div><span style="color: #d4d4d4;">{</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #569cd6;">void</span><span style="color: #d4d4d4;"> </span><span style="color: #dcdcaa;">MyMethod</span><span style="color: #d4d4d4;">()</span></div><div><span style="color: #d4d4d4;">&#160; &#160; {</span></div><div><span style="color: #d4d4d4;">&#160; &#160; &#160; &#160; </span><span style="color: #dcdcaa;">MyGlobalFunction</span><span style="color: #d4d4d4;">(</span><span style="color: #569cd6;">this</span><span style="color: #d4d4d4;">);</span></div><div><span style="color: #d4d4d4;">&#160; &#160; }</span></div><div><span style="color: #d4d4d4;">}</span></div><br><div><span style="color: #569cd6;">void</span><span style="color: #d4d4d4;"> </span><span style="color: #dcdcaa;">MyGlobalFunction</span><span style="color: #d4d4d4;">(</span><span style="color: #4ec9b0;">AActor</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">Actor</span><span style="color: #d4d4d4;">)</span></div><div><span style="color: #d4d4d4;">{</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #569cd6;">if</span><span style="color: #d4d4d4;"> (!</span><span style="color: #9cdcfe;">Actor</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">IsHidden</span><span style="color: #d4d4d4;">())</span></div><div><span style="color: #d4d4d4;">&#160; &#160; {</span></div><div><span style="color: #d4d4d4;">&#160; &#160; &#160; &#160; </span><span style="color: #9cdcfe;">Actor</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">DestroyActor</span><span style="color: #d4d4d4;">();</span></div><div><span style="color: #d4d4d4;">&#160; &#160; }</span></div><div><span style="color: #d4d4d4;">}</span></div></div>
 
 ## Functions that can be called from Blueprint
 To make it so a function can be called from blueprint, add a `UFUNCTION()` specifier above it.
 
-```cpp
-class AExampleActor : AActor
-{
-	UFUNCTION()
-	void MyMethodForBlueprint()
-	{
-		Print("I can be called from a blueprint!");
-	}
-}
-```
+<div class="code_block" style="color: #d4d4d4;background-color: #1e1e1e;font-family: Consolas, 'Courier New', monospace;font-weight: normal;font-size: 16px;line-height: 19px;white-space: pre;"><div><span style="color: #569cd6;">class</span><span style="color: #d4d4d4;"> </span><span style="color: #4ec9b0;">AExampleActor</span><span style="color: #d4d4d4;"> : </span><span style="color: #4ec9b0;">AActor</span></div><div><span style="color: #d4d4d4;">{</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #4fc1ff;">UFUNCTION</span><span style="color: #d4d4d4;">()</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #569cd6;">void</span><span style="color: #d4d4d4;"> </span><span style="color: #dcdcaa;">MyMethodForBlueprint</span><span style="color: #d4d4d4;">()</span></div><div><span style="color: #d4d4d4;">&#160; &#160; {</span></div><div><span style="color: #d4d4d4;">&#160; &#160; &#160; &#160; </span><span style="color: #dcdcaa;">Print</span><span style="color: #d4d4d4;">(</span><span style="color: #ce9178;">"I can be called from a blueprint!"</span><span style="color: #d4d4d4;">);</span></div><div><span style="color: #d4d4d4;">&#160; &#160; }</span></div><div><span style="color: #d4d4d4;">}</span></div></div>
 
 > **Note:** Unlike in C++, it is not necessary to specify `BlueprintCallable`, it is assumed by default.
 
@@ -47,22 +22,17 @@ class AExampleActor : AActor
 To override a Blueprint Event declared from a C++ parent class, use the `BlueprintOverride` keyword.
 You will use this often to override common events such as `BeginPlay` or `Tick`:
 
-```cpp
-class AExampleActor : AActor
-{
-	UFUNCTION(BlueprintOverride)
-	void BeginPlay()
-	{
-		Print("I am a BeginPlay override");
-	}
+<div class="code_block" style="color: #d4d4d4;background-color: #1e1e1e;font-family: 'Terminus (TTF) for Windows', Consolas, 'Courier New', monospace;font-weight: normal;font-size: 14px;line-height: 19px;white-space: pre;"><div><span style="color: #569cd6;">class</span><span style="color: #d4d4d4;"> </span><span style="color: #4ec9b0;">AExampleActor</span><span style="color: #d4d4d4;"> : </span><span style="color: #4ec9b0;">AActor</span></div><div><span style="color: #d4d4d4;">{</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #4fc1ff;">UFUNCTION</span><span style="color: #d4d4d4;">(</span><span style="color: #569cd6;">BlueprintOverride</span><span style="color: #d4d4d4;">)</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #569cd6;">void</span><span style="color: #d4d4d4;"> </span><span style="color: #dcdcaa;">BeginPlay</span><span style="color: #d4d4d4;">()</span></div><div><span style="color: #d4d4d4;">&#160; &#160; {</span></div><div><span style="color: #d4d4d4;">&#160; &#160; &#160; &#160; </span><span style="color: #dcdcaa;">Print</span><span style="color: #d4d4d4;">(</span><span style="color: #ce9178;">"I am a BeginPlay override"</span><span style="color: #d4d4d4;">);</span></div><div><span style="color: #d4d4d4;">&#160; &#160; }</span></div><br><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #4fc1ff;">UFUNCTION</span><span style="color: #d4d4d4;">(</span><span style="color: #569cd6;">BlueprintOverride</span><span style="color: #d4d4d4;">)</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #569cd6;">void</span><span style="color: #d4d4d4;"> </span><span style="color: #dcdcaa;">Tick</span><span style="color: #d4d4d4;">(</span><span style="color: #569cd6;">float</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">DeltaSeconds</span><span style="color: #d4d4d4;">)</span></div><div><span style="color: #d4d4d4;">&#160; &#160; {</span></div><div><span style="color: #d4d4d4;">&#160; &#160; &#160; &#160; </span><span style="color: #dcdcaa;">Print</span><span style="color: #d4d4d4;">(</span><span style="color: #ce9178;">"I get called every tick"</span><span style="color: #d4d4d4;">);</span></div><div><span style="color: #d4d4d4;">&#160; &#160; }</span></div><div><span style="color: #d4d4d4;">}</span></div></div>
 
-	UFUNCTION(BlueprintOverride)
-	void Tick(float DeltaSeconds)
-	{
-		Print("I get called every tick");
-	}
-}
-```
+The visual studio code extension has helpers for easily overriding blueprint events from parent classes.
+
+When the cursor is within a class, you can click the Lightbulb icon (or press <kbd>Ctrl</kbd> + <kbd>.</kbd> by default) to choose a function to override:
+
+![](/img/override-lightbulb.png)
+
+Typing the name of an overridable event also suggests a completion for the full function signature:
+
+![](/img/override-completion.png)
 
 > **Note:** For C++ functions that don't explicitly specify a `ScriptName` meta tag, some name simplification is automatically done to remove common prefixes.  
 > For example, the C++ event is called `ReceiveBeginPlay`, but the preceeding `Receive` is removed and it just becomes `BeginPlay` in script.  
@@ -72,43 +42,20 @@ class AExampleActor : AActor
 Often you will want to create a blueprint that inherits from a script parent class.
 In order to make a function so it can be overridden from a child blueprint, add the `BlueprintEvent` specifier.
 
-```cpp
-class AExampleActor : AActor
-{
-	UFUNCTION(BlueprintEvent)
-	void OverridableFunction()
-	{
-		Print("This will only print if not overridden from a child BP.");
-	}
-}
-```
+<div class="code_block" style="color: #d4d4d4;background-color: #1e1e1e;font-family: 'Terminus (TTF) for Windows', Consolas, 'Courier New', monospace;font-weight: normal;font-size: 14px;line-height: 19px;white-space: pre;"><div><span style="color: #569cd6;">class</span><span style="color: #d4d4d4;"> </span><span style="color: #4ec9b0;">AExampleActor</span><span style="color: #d4d4d4;"> : </span><span style="color: #4ec9b0;">AActor</span></div><div><span style="color: #d4d4d4;">{</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #4fc1ff;">UFUNCTION</span><span style="color: #d4d4d4;">(</span><span style="color: #569cd6;">BlueprintEvent</span><span style="color: #d4d4d4;">)</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #569cd6;">void</span><span style="color: #d4d4d4;"> </span><span style="color: #dcdcaa;">OverridableFunction</span><span style="color: #d4d4d4;">()</span></div><div><span style="color: #d4d4d4;">&#160; &#160; {</span></div><div><span style="color: #d4d4d4;">&#160; &#160; &#160; &#160; </span><span style="color: #dcdcaa;">Print</span><span style="color: #d4d4d4;">(</span><span style="color: #ce9178;">"This will only print if not overridden from a child BP."</span><span style="color: #d4d4d4;">);</span></div><div><span style="color: #d4d4d4;">&#160; &#160; }</span></div><div><span style="color: #d4d4d4;">}</span></div></div>
 
 > **Note:** Script has no split between `BlueprintImplementableEvent` and `BlueprintNativeEvent` like C++ has.
 > All script functions require a base implementation, although it can be left empty.
 
 ### Tip: Separate Blueprint Events
 One pattern that is employed often in Unreal C++ and can be useful in script as well is to have separate script and blueprint events.
-This way you can guarantee that the script code runs as well as any blueprint child code, this way you will never run into issues from a Designer forgetting to do "Add call to parent function".
+This way you can guarantee that the script code always runs in addition to nodes in the blueprint child, and you will never run into issues from a Designer forgetting to use "Add call to parent function".
 
 For example, a pickup actor might do:
-```cpp
-class AExamplePickupActor : AActor
-{
-	void PickedUp()
-	{
-		// We always want this script code to run, even if our blueprint child wants to do something too
-		Print(f"Pickup {this} was picked up!");
-		SetActorHiddenInGame(false);
 
-		// Call the separate blueprint event
-		BP_PickedUp();
-	}
+<div class="code_block" style="color: #d4d4d4;background-color: #1e1e1e;font-family: 'Terminus (TTF) for Windows', Consolas, 'Courier New', monospace;font-weight: normal;font-size: 14px;line-height: 19px;white-space: pre;"><div><span style="color: #569cd6;">class</span><span style="color: #d4d4d4;"> </span><span style="color: #4ec9b0;">AExamplePickupActor</span><span style="color: #d4d4d4;"> : </span><span style="color: #4ec9b0;">AActor</span></div><div><span style="color: #d4d4d4;">{</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #569cd6;">void</span><span style="color: #d4d4d4;"> </span><span style="color: #dcdcaa;">PickedUp</span><span style="color: #d4d4d4;">()</span></div><div><span style="color: #d4d4d4;">&#160; &#160; {</span></div><div><span style="color: #d4d4d4;">&#160; &#160; &#160; &#160; </span><span style="color: #6a9955;">// We always want this script code to run, even if our blueprint child wants to do something too</span></div><div><span style="color: #d4d4d4;">&#160; &#160; &#160; &#160; </span><span style="color: #dcdcaa;">Print</span><span style="color: #d4d4d4;">(</span><span style="color: #d7ba7d;">f"</span><span style="color: #ce9178;">Pickup </span><span style="color: #569cd6;">{this}</span><span style="color: #ce9178;"> was picked up!</span><span style="color: #d7ba7d;">"</span><span style="color: #d4d4d4;">);</span></div><div><span style="color: #d4d4d4;">&#160; &#160; &#160; &#160; </span><span style="color: #dcdcaa;">SetActorHiddenInGame</span><span style="color: #d4d4d4;">(</span><span style="color: #569cd6;">false</span><span style="color: #d4d4d4;">);</span></div><br><div><span style="color: #d4d4d4;">&#160; &#160; &#160; &#160; </span><span style="color: #6a9955;">// Call the separate blueprint event</span></div><div><span style="color: #d4d4d4;">&#160; &#160; &#160; &#160; </span><span style="color: #dcdcaa;">BP_PickedUp</span><span style="color: #d4d4d4;">();</span></div><div><span style="color: #d4d4d4;">&#160; &#160; }</span></div><br><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #6a9955;">// Allows blueprints to add functionality, does not contain any code</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #4fc1ff;">UFUNCTION</span><span style="color: #d4d4d4;">(</span><span style="color: #569cd6;">BlueprintEvent</span><span style="color: #d4d4d4;">, </span><span style="color: #569cd6;">DisplayName</span><span style="color: #d4d4d4;"> = </span><span style="color: #ce9178;">"Picked Up"</span><span style="color: #d4d4d4;">)</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #569cd6;">void</span><span style="color: #d4d4d4;"> </span><span style="color: #dcdcaa;">BP_PickedUp</span><span style="color: #d4d4d4;">() {}</span></div><div><span style="color: #d4d4d4;">}</span></div></div>
 
-	// Allows blueprints to add functionality, does not contain any code
-	UFUNCTION(BlueprintEvent)
-	void BP_PickedUp() {}
-}
-```
+![](/img/bp-override.png)
 
 ## Global Functions
 Any script function in global scope can also have `UFUNCTION()` added to it.
@@ -126,38 +73,6 @@ This lets you create functions not bound to a class, similar to how Blueprint Fu
 When overriding a script function with another script function, you can use the same `Super::` syntax from Unreal C++ to call the parent function.
 Note that script methods can be overridden without needing `BlueprintEvent` on the base function (all script methods are virtual). However when overriding a `BlueprintEvent`, you *will* need to specify `BlueprintOverride` on the overrides.
 
-```cpp
-class AScriptParentActor : AActor
-{
-	void PlainMethod(FVector Location)
-	{
-		Print("AScriptParentActor::PlainMethod()");
-	}
-
-	UFUNCTION(BlueprintEvent)
-	void BlueprintEventMethod(int Value)
-	{
-		Print("AScriptParentActor::BlueprintEventMethod()");
-	}
-}
-
-class AScriptChildActor : AScriptParentActor
-{
-	// Any script method can be overridden
-	void PlainMethod(FVector Location) override
-	{
-		Super::PlainMethod();
-		Print("AScriptChildActor::PlainMethod()");
-	}
-
-	// Overriding a parent BlueprintEvent requires BlueprintOverride
-	UFUNCTION(BlueprintOverride)
-	void BlueprintEventMethod(int Value)
-	{
-		Super::BlueprintEventMethod();
-		Print("AScriptChildActor::BlueprintEventMethod()");
-	}
-}
-```
+<div class="code_block" style="color: #d4d4d4;background-color: #1e1e1e;font-family: 'Terminus (TTF) for Windows', Consolas, 'Courier New', monospace;font-weight: normal;font-size: 14px;line-height: 19px;white-space: pre;"><div><span style="color: #569cd6;">class</span><span style="color: #d4d4d4;"> </span><span style="color: #4ec9b0;">AScriptParentActor</span><span style="color: #d4d4d4;"> : </span><span style="color: #4ec9b0;">AActor</span></div><div><span style="color: #d4d4d4;">{</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #569cd6;">void</span><span style="color: #d4d4d4;"> </span><span style="color: #dcdcaa;">PlainMethod</span><span style="color: #d4d4d4;">(</span><span style="color: #4ec9b0;">FVector</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">Location</span><span style="color: #d4d4d4;">)</span></div><div><span style="color: #d4d4d4;">&#160; &#160; {</span></div><div><span style="color: #d4d4d4;">&#160; &#160; &#160; &#160; </span><span style="color: #dcdcaa;">Print</span><span style="color: #d4d4d4;">(</span><span style="color: #ce9178;">"AScriptParentActor::PlainMethod()"</span><span style="color: #d4d4d4;">);</span></div><div><span style="color: #d4d4d4;">&#160; &#160; }</span></div><br><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #4fc1ff;">UFUNCTION</span><span style="color: #d4d4d4;">(</span><span style="color: #569cd6;">BlueprintEvent</span><span style="color: #d4d4d4;">)</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #569cd6;">void</span><span style="color: #d4d4d4;"> </span><span style="color: #dcdcaa;">BlueprintEventMethod</span><span style="color: #d4d4d4;">(</span><span style="color: #569cd6;">int</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">Value</span><span style="color: #d4d4d4;">)</span></div><div><span style="color: #d4d4d4;">&#160; &#160; {</span></div><div><span style="color: #d4d4d4;">&#160; &#160; &#160; &#160; </span><span style="color: #dcdcaa;">Print</span><span style="color: #d4d4d4;">(</span><span style="color: #ce9178;">"AScriptParentActor::BlueprintEventMethod()"</span><span style="color: #d4d4d4;">);</span></div><div><span style="color: #d4d4d4;">&#160; &#160; }</span></div><div><span style="color: #d4d4d4;">}</span></div><br><div><span style="color: #569cd6;">class</span><span style="color: #d4d4d4;"> </span><span style="color: #4ec9b0;">AScriptChildActor</span><span style="color: #d4d4d4;"> : </span><span style="color: #4ec9b0;">AScriptParentActor</span></div><div><span style="color: #d4d4d4;">{</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #6a9955;">// Any script method can be overridden</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #569cd6;">void</span><span style="color: #d4d4d4;"> </span><span style="color: #dcdcaa;">PlainMethod</span><span style="color: #d4d4d4;">(</span><span style="color: #4ec9b0;">FVector</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">Location</span><span style="color: #d4d4d4;">) </span><span style="color: #569cd6;">override</span></div><div><span style="color: #d4d4d4;">&#160; &#160; {</span></div><div><span style="color: #d4d4d4;">&#160; &#160; &#160; &#160; </span><span style="color: #4ec9b0;">Super</span><span style="color: #d4d4d4;">::</span><span style="color: #dcdcaa;">PlainMethod</span><span style="color: #d4d4d4;">(</span><span style="color: #9cdcfe;">Location</span><span style="color: #d4d4d4;">);</span></div><div><span style="color: #d4d4d4;">&#160; &#160; &#160; &#160; </span><span style="color: #dcdcaa;">Print</span><span style="color: #d4d4d4;">(</span><span style="color: #ce9178;">"AScriptChildActor::PlainMethod()"</span><span style="color: #d4d4d4;">);</span></div><div><span style="color: #d4d4d4;">&#160; &#160; }</span></div><br><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #6a9955;">// Overriding a parent BlueprintEvent requires BlueprintOverride</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #4fc1ff;">UFUNCTION</span><span style="color: #d4d4d4;">(</span><span style="color: #569cd6;">BlueprintOverride</span><span style="color: #d4d4d4;">)</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #569cd6;">void</span><span style="color: #d4d4d4;"> </span><span style="color: #dcdcaa;">BlueprintEventMethod</span><span style="color: #d4d4d4;">(</span><span style="color: #569cd6;">int</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">Value</span><span style="color: #d4d4d4;">)</span></div><div><span style="color: #d4d4d4;">&#160; &#160; {</span></div><div><span style="color: #d4d4d4;">&#160; &#160; &#160; &#160; </span><span style="color: #4ec9b0;">Super</span><span style="color: #d4d4d4;">::</span><span style="color: #dcdcaa;">BlueprintEventMethod</span><span style="color: #d4d4d4;">(</span><span style="color: #9cdcfe;">Value</span><span style="color: #d4d4d4;">);</span></div><div><span style="color: #d4d4d4;">&#160; &#160; &#160; &#160; </span><span style="color: #dcdcaa;">Print</span><span style="color: #d4d4d4;">(</span><span style="color: #ce9178;">"AScriptChildActor::BlueprintEventMethod()"</span><span style="color: #d4d4d4;">);</span></div><div><span style="color: #d4d4d4;">&#160; &#160; }</span></div><div><span style="color: #d4d4d4;">}</span></div></div>
 
 > **Note:** When overriding a C++ `BlueprintNativeEvent`, it is not possible to call the C++ Super method due to a technical limitation. You can either prefer creating `BlueprintImplementEvent`s, or put the base implementation in a separate callable function.
