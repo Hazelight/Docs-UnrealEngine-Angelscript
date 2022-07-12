@@ -142,3 +142,20 @@ h4:hover .zola-anchor
 	transition: 0.3s;
 	transition-delay: 0.1s;
 }
+
+h1 {
+	font-size: 170%;
+}
+
+h2 {
+	font-size: 140%;
+	margin-top: 1.5em;
+}
+
+h1 + h2 {
+	margin-top: -1em;
+}
+
+h2 + p {
+	margin-top: -1em;
+}
