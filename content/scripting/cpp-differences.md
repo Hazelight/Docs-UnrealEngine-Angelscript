@@ -15,7 +15,7 @@ Any variable declared with a `UObject` type is automatically an object reference
 This is similar to how object reference variables work in blueprint.
 There is no `->` arrow operator in script, everything happens with `.` dots.
 
-**Note:** Unlike in C++, it is _not_ necessary to declare a property as `UPROPERTY()` in order to avoid it being garbage collected. All object references in script are automatically inserted into the GC.
+> **Note:** Unlike in C++, it is _not_ necessary to declare a property as `UPROPERTY()` in order to avoid it being garbage collected. All object references in script are automatically inserted into the GC.
 
 ```cpp
 void TeleportActorToOtherActor(AActor ActorReference, AActor TeleportToActor)

@@ -14,13 +14,13 @@ Come talk to us in our [Discord Server](https://discord.gg/39wmC2e) if you're in
 
 ## Mission Statement
 When making gameplay systems of higher complexity, blueprint visual scripting can easily lead to unmaintainable spaghetti.
-Making these systems in C++ imposes long iteration times however, and can be daunting for Designers to use.
+However, making these systems in C++ imposes long iteration times, and can be daunting for designers or gameplay scripters to use.
 
 With this plugin you can write gameplay in a customized version of [Angelscript](https://www.angelcode.com/angelscript/), a simple but powerful scripting language.
 
 Some key benefits that this plugin helps achieve:
 * **Rapid Iteration** - Scripts can be reloaded instantly in the editor, letting developers focus on creating cool shit instead of waiting for compiles and editor restarts.
-* **Improved Cooperation** - Because Gameplay Programmers and Designers are no longer separated by the C++/Blueprint divide, they can work closely together using the same systems and tools.
+* **Improved Cooperation** - Because programmers and designers are no longer separated by the C++/Blueprint divide, they can work closely together using the same systems and tools.
 * **Performance** - Angelscript performs *significantly* better than blueprint for game scripting, and approaches native C++ performance when using [transpiled scripts](/cpp-bindings/precompiled-data) in a shipping build.
 
 ## Features
@@ -28,12 +28,12 @@ Some key benefits that this plugin helps achieve:
 
 ![](/img/scripting.png)
 
-Programmers used to working in Unreal C++ will find the scripts instantly familiar, but with many key simplifications to make life easier for Designers and avoid common C++ pitfalls.
+Programmers used to working in Unreal C++ will find the scripts instantly familiar, but with many key simplifications to make life easier for designers and avoid common C++ pitfalls.
 
 ### Script Hotreload for Fast Iteration
 See your changes to scripted actors and components reflected immediately when you hit save.
 
-Non-structural changes can even be reloaded *while* playing your game for lightning-fast iteration.
+Non-structural changes can be reloaded *while* playing your game for lightning-fast iteration.
 
 ![Properties](/img/properties.png)
 

@@ -4,7 +4,7 @@ weight = 10
 +++
 
 # Installation
-## Getting Unreal Engine Source Access
+## 1. Getting Unreal Engine Source Access
 The angelscript integration requires direct changes to unreal engine code to work.
 You will need to get access to unreal engine source code to be able to access the 
 version of the engine used in this project.
@@ -13,7 +13,7 @@ To get source code access, follow this guide from Epic Games:
 [https://www.unrealengine.com/en-US/ue-on-github](https://www.unrealengine.com/en-US/ue-on-github)
 
 
-## Downloading UnrealEngine-Angelscript
+## 2. Downloading UnrealEngine-Angelscript
 You can download a precompiled editor binary with angelscript from the
 [Releases Pages](https://github.com/Hazelight/UnrealEngine-Angelscript/releases)
 on github.
@@ -25,7 +25,7 @@ Note that you will need to build from source yourself if you want to use any add
 This fork will not be compatible with any binary plugin distributions from the unreal marketplace.
 
 
-## Installing the Visual Studio Code Extension
+## 3. Installing the Visual Studio Code Extension
 A visual studio code extension with auto-completion and debugging support is available.
 
 Install visual studio code from [https://code.visualstudio.com/](https://code.visualstudio.com/).
