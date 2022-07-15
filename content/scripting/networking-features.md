@@ -24,32 +24,7 @@ be done using `default` statements.
 
 Example:
 
-```cpp
-class AReplicatedActor : AActor
-{
-	// Set the actor's replicates property to default to true,
-	// so its declared replicated properties work.
-	default bReplicates = true;
-
-	// Will always be replicated when it changes
-	UPROPERTY(Replicated)
-	bool bReplicatedBool = true;
-
-	// Only replicates to the owner
-	UPROPERTY(Replicated, ReplicationCondition = OwnerOnly)
-	int ReplicatedInt = 0;
-
-	// Calls OnRep_ReplicatedValue whenever it is replicated
-	UPROPERTY(Replicated, ReplicatedUsing = OnRep_ReplicatedValue)
-	int ReplicatedValue = 0;
-
-	UFUNCTION()
-	void OnRep_ReplicatedValue()
-	{
-		Print("Replicated Value has changed!");
-	}
-}
-```
+<div class="code_block" style="color: #d4d4d4;background-color: #1e1e1e;font-family: 'Terminus (TTF) for Windows', Consolas, 'Courier New', monospace;font-weight: normal;font-size: 14px;line-height: 19px;white-space: pre;"><div><span style="color: #569cd6;">class</span><span style="color: #d4d4d4;"> </span><span style="color: #4ec9b0;">AReplicatedActor</span><span style="color: #d4d4d4;"> : </span><span style="color: #4ec9b0;">AActor</span></div><div><span style="color: #d4d4d4;">{</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #6a9955;">// Set the actor's replicates property to default to true,</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #6a9955;">// so its declared replicated properties work.</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #569cd6;">default</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">bReplicates</span><span style="color: #d4d4d4;"> = </span><span style="color: #569cd6;">true</span><span style="color: #d4d4d4;">;</span></div><br><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #6a9955;">// Will always be replicated when it changes</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #4fc1ff;">UPROPERTY</span><span style="color: #d4d4d4;">(</span><span style="color: #569cd6;">Replicated</span><span style="color: #d4d4d4;">)</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #569cd6;">bool</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">bReplicatedBool</span><span style="color: #d4d4d4;"> = </span><span style="color: #569cd6;">true</span><span style="color: #d4d4d4;">;</span></div><br><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #6a9955;">// Only replicates to the owner</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #4fc1ff;">UPROPERTY</span><span style="color: #d4d4d4;">(</span><span style="color: #569cd6;">Replicated</span><span style="color: #d4d4d4;">, </span><span style="color: #569cd6;">ReplicationCondition</span><span style="color: #d4d4d4;"> = OwnerOnly)</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #569cd6;">int</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">ReplicatedInt</span><span style="color: #d4d4d4;"> = </span><span style="color: #b5cea8;">0</span><span style="color: #d4d4d4;">;</span></div><br><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #6a9955;">// Calls OnRep_ReplicatedValue whenever it is replicated</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #4fc1ff;">UPROPERTY</span><span style="color: #d4d4d4;">(</span><span style="color: #569cd6;">Replicated</span><span style="color: #d4d4d4;">, </span><span style="color: #569cd6;">ReplicatedUsing</span><span style="color: #d4d4d4;"> = OnRep_ReplicatedValue)</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #569cd6;">int</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">ReplicatedValue</span><span style="color: #d4d4d4;"> = </span><span style="color: #b5cea8;">0</span><span style="color: #d4d4d4;">;</span></div><br><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #4fc1ff;">UFUNCTION</span><span style="color: #d4d4d4;">()</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #569cd6;">void</span><span style="color: #d4d4d4;"> </span><span style="color: #dcdcaa;">OnRep_ReplicatedValue</span><span style="color: #d4d4d4;">()</span></div><div><span style="color: #d4d4d4;">&#160; &#160; {</span></div><div><span style="color: #d4d4d4;">&#160; &#160; &#160; &#160; </span><span style="color: #dcdcaa;">Print</span><span style="color: #d4d4d4;">(</span><span style="color: #ce9178;">"Replicated Value has changed!"</span><span style="color: #d4d4d4;">);</span></div><div><span style="color: #d4d4d4;">&#160; &#160; }</span></div><div><span style="color: #d4d4d4;">}</span></div></div>
 
 Available conditions for `ReplicationCondition` match the ELifetimeCondition enum in C++, and are as follows:
 
