@@ -11,15 +11,7 @@ some condition to occur. You can generate code coverage reports for test
 runs as well. `FName`
 
 # Unit Tests
-```cpp
-void Test_NameOfTheTestCase(FUnitTest& T)
-{
-    // Fails the test.
-	T.AssertTrue(false);
-	T.AssertEquals(1, 1 + 1);
-	T.AssertNotNull(nullptr);
-}
-```
+<div class="code_block" style="color: #d4d4d4;background-color: #1e1e1e;font-family: 'Terminus (TTF) for Windows', Consolas, 'Courier New', monospace;font-weight: normal;font-size: 14px;line-height: 19px;white-space: pre;"><div><span style="color: #569cd6;">void</span><span style="color: #d4d4d4;"> </span><span style="color: #dcdcaa;">Test_NameOfTheTestCase</span><span style="color: #d4d4d4;">(</span><span style="color: #4ec9b0;">FUnitTest</span><span style="color: #d4d4d4;">&amp; </span><span style="color: #9cdcfe;">T</span><span style="color: #d4d4d4;">)</span></div><div><span style="color: #d4d4d4;">{</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #6a9955;">// Fails the test.</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #9cdcfe;">T</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">AssertTrue</span><span style="color: #d4d4d4;">(</span><span style="color: #569cd6;">false</span><span style="color: #d4d4d4;">);</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #9cdcfe;">T</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">AssertEquals</span><span style="color: #d4d4d4;">(</span><span style="color: #b5cea8;">1</span><span style="color: #d4d4d4;">, </span><span style="color: #b5cea8;">1</span><span style="color: #d4d4d4;"> + </span><span style="color: #b5cea8;">1</span><span style="color: #d4d4d4;">);</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #9cdcfe;">T</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">AssertNotNull</span><span style="color: #d4d4d4;">(</span><span style="color: #569cd6;">nullptr</span><span style="color: #d4d4d4;">);</span></div><div><span style="color: #d4d4d4;">}</span></div></div>
 
 You can put test code in any Angelscript file, but by convention these
 are put in File_Test.as if your production code is in File.as.
@@ -47,20 +39,19 @@ Engine\Binaries\Win64\UE4Editor-Cmd.exe \Path\To\your.uproject -NullRHI -NoSound
 You can add this line to one of your .ini files in your project to get a game mode in your tests:
 You can then create a blueprint at the specified location and put whatever settings you want in there.
 This will be used by all unit tests.
+
+```ini
 [/Script/EngineSettings.GameMapsSettings]
 ...
 +GameModeClassAliases=(Name="UnitTest",GameMode="/Game/Testing/UnitTest/BP_UnitTestGameMode.BP_UnitTestGameMode_C")
+```
 
 # Integration Tests
 Each integration test has a map where you can draw up any geometry or place any actors you like.
 
 Add this to for instance MyTestName_IntegrationTest.as:
 
-```cpp
-void IntegrationTest_MyTestName(FIntegrationTest& T)
-{	
-}
-```
+<div class="code_block" style="color: #d4d4d4;background-color: #1e1e1e;font-family: 'Terminus (TTF) for Windows', Consolas, 'Courier New', monospace;font-weight: normal;font-size: 14px;line-height: 19px;white-space: pre;"><div><span style="color: #569cd6;">void</span><span style="color: #d4d4d4;"> </span><span style="color: #dcdcaa;">IntegrationTest_MyTestName</span><span style="color: #d4d4d4;">(</span><span style="color: #4ec9b0;">FIntegrationTest</span><span style="color: #d4d4d4;">&amp; </span><span style="color: #9cdcfe;">T</span><span style="color: #d4d4d4;">)</span></div><div><span style="color: #d4d4d4;">{ &#160; </span></div><div><span style="color: #d4d4d4;">}</span></div></div>
 
 Then you need to add a test map IntegrationTest_MyTestName.umap to /Content/Testing/ (create the dir if you don't have it
 in your project yet). The map name is always the same as the test name, with .umap added.
@@ -73,41 +64,8 @@ IntegrationTestMapRoot=/Game/Testing/
 ```
 
 You can retrieve placed actors like this (or spawn them in the test):
-```cpp
-// Looks up an actor in the map
-AActor GetActorByLabel(UClass Class, const FName& Label)
-{
-#if EDITOR
-    TArray<AActor> Actors;
-    GetAllActorsOfClass(Class, Actors);
 
-    for (AActor Actor: Actors)
-    {
-        if (Actor.GetActorLabel() == Label)
-        {
-            return Actor;
-        }
-    }
-
-    FString AllActorLabels = "";
-    for (AActor Actor: Actors)
-    {
-        AllActorLabels += "- " + Actor.GetActorLabel() + "\n";
-    }
-    if (AllActorLabels.IsEmpty()) {
-        Throw(
-            "Did not find an actor with class " + Class.GetName() +
-            " and label " + Label + ". In fact, there no actors in this level.");
-    } else {
-        Throw(
-            "Did not find an actor with class " + Class.GetName() +
-            " and label " + Label + ". Found these actors:\n" + AllActorLabels);
-    }
-#endif  // EDITOR
-	Throw("GetActorByLabel is only for testing, i.e. when in EDITOR mode.");
-	return nullptr;
-}
-```
+<div class="code_block" style="color: #d4d4d4;background-color: #1e1e1e;font-family: 'Terminus (TTF) for Windows', Consolas, 'Courier New', monospace;font-weight: normal;font-size: 14px;line-height: 19px;white-space: pre;"><div><span style="color: #6a9955;">// Looks up an actor in the map</span></div><div><span style="color: #4ec9b0;">AActor</span><span style="color: #d4d4d4;"> </span><span style="color: #dcdcaa;">GetActorByLabel</span><span style="color: #d4d4d4;">(</span><span style="color: #4ec9b0;">UClass</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">Class</span><span style="color: #d4d4d4;">, </span><span style="color: #569cd6;">const</span><span style="color: #d4d4d4;"> </span><span style="color: #4ec9b0;">FName</span><span style="color: #d4d4d4;">&amp; </span><span style="color: #9cdcfe;">Label</span><span style="color: #d4d4d4;">)</span></div><div><span style="color: #d4d4d4;">{</span></div><div><span style="color: #569cd6;">#if EDITOR</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #4ec9b0;">TArray</span><span style="color: #d4d4d4;">&lt;</span><span style="color: #4ec9b0;">AActor</span><span style="color: #d4d4d4;">&gt; </span><span style="color: #9cdcfe;">Actors</span><span style="color: #d4d4d4;">;</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #dcdcaa;">GetAllActorsOfClass</span><span style="color: #d4d4d4;">(</span><span style="color: #9cdcfe;">Class</span><span style="color: #d4d4d4;">, </span><span style="color: #9cdcfe;">Actors</span><span style="color: #d4d4d4;">);</span></div><br><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #569cd6;">for</span><span style="color: #d4d4d4;"> (</span><span style="color: #4ec9b0;">AActor</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">Actor</span><span style="color: #d4d4d4;">: </span><span style="color: #9cdcfe;">Actors</span><span style="color: #d4d4d4;">)</span></div><div><span style="color: #d4d4d4;">&#160; &#160; {</span></div><div><span style="color: #d4d4d4;">&#160; &#160; &#160; &#160; </span><span style="color: #569cd6;">if</span><span style="color: #d4d4d4;"> (</span><span style="color: #9cdcfe;">Actor</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">GetActorLabel</span><span style="color: #d4d4d4;">() == </span><span style="color: #9cdcfe;">Label</span><span style="color: #d4d4d4;">)</span></div><div><span style="color: #d4d4d4;">&#160; &#160; &#160; &#160; {</span></div><div><span style="color: #d4d4d4;">&#160; &#160; &#160; &#160; &#160; &#160; </span><span style="color: #569cd6;">return</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">Actor</span><span style="color: #d4d4d4;">;</span></div><div><span style="color: #d4d4d4;">&#160; &#160; &#160; &#160; }</span></div><div><span style="color: #d4d4d4;">&#160; &#160; }</span></div><br><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #4ec9b0;">FString</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">AllActorLabels</span><span style="color: #d4d4d4;"> = </span><span style="color: #ce9178;">""</span><span style="color: #d4d4d4;">;</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #569cd6;">for</span><span style="color: #d4d4d4;"> (</span><span style="color: #4ec9b0;">AActor</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">Actor</span><span style="color: #d4d4d4;">: </span><span style="color: #9cdcfe;">Actors</span><span style="color: #d4d4d4;">)</span></div><div><span style="color: #d4d4d4;">&#160; &#160; {</span></div><div><span style="color: #d4d4d4;">&#160; &#160; &#160; &#160; </span><span style="color: #9cdcfe;">AllActorLabels</span><span style="color: #d4d4d4;"> += </span><span style="color: #ce9178;">"- "</span><span style="color: #d4d4d4;"> + </span><span style="color: #9cdcfe;">Actor</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">GetActorLabel</span><span style="color: #d4d4d4;">() + </span><span style="color: #ce9178;">"</span><span style="color: #d7ba7d;">\n</span><span style="color: #ce9178;">"</span><span style="color: #d4d4d4;">;</span></div><div><span style="color: #d4d4d4;">&#160; &#160; }</span></div><br><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #569cd6;">if</span><span style="color: #d4d4d4;"> (</span><span style="color: #9cdcfe;">AllActorLabels</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">IsEmpty</span><span style="color: #d4d4d4;">())</span></div><div><span style="color: #d4d4d4;">&#160; &#160; {</span></div><div><span style="color: #d4d4d4;">&#160; &#160; &#160; &#160; </span><span style="color: #dcdcaa;">Throw</span><span style="color: #d4d4d4;">(</span></div><div><span style="color: #d4d4d4;">&#160; &#160; &#160; &#160; &#160; &#160; </span><span style="color: #ce9178;">"Did not find an actor with class "</span><span style="color: #d4d4d4;"> + </span><span style="color: #9cdcfe;">Class</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">GetName</span><span style="color: #d4d4d4;">() +</span></div><div><span style="color: #d4d4d4;">&#160; &#160; &#160; &#160; &#160; &#160; </span><span style="color: #ce9178;">" and label "</span><span style="color: #d4d4d4;"> + </span><span style="color: #9cdcfe;">Label</span><span style="color: #d4d4d4;"> + </span><span style="color: #ce9178;">". In fact, there no actors in this level."</span><span style="color: #d4d4d4;">);</span></div><div><span style="color: #d4d4d4;">&#160; &#160; }</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #569cd6;">else</span></div><div><span style="color: #d4d4d4;">&#160; &#160; {</span></div><div><span style="color: #d4d4d4;">&#160; &#160; &#160; &#160; </span><span style="color: #dcdcaa;">Throw</span><span style="color: #d4d4d4;">(</span></div><div><span style="color: #d4d4d4;">&#160; &#160; &#160; &#160; &#160; &#160; </span><span style="color: #ce9178;">"Did not find an actor with class "</span><span style="color: #d4d4d4;"> + </span><span style="color: #9cdcfe;">Class</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">GetName</span><span style="color: #d4d4d4;">() +</span></div><div><span style="color: #d4d4d4;">&#160; &#160; &#160; &#160; &#160; &#160; </span><span style="color: #ce9178;">" and label "</span><span style="color: #d4d4d4;"> + </span><span style="color: #9cdcfe;">Label</span><span style="color: #d4d4d4;"> + </span><span style="color: #ce9178;">". Found these actors:</span><span style="color: #d7ba7d;">\n</span><span style="color: #ce9178;">"</span><span style="color: #d4d4d4;"> + </span><span style="color: #9cdcfe;">AllActorLabels</span><span style="color: #d4d4d4;">);</span></div><div><span style="color: #d4d4d4;">&#160; &#160; }</span></div><div><span style="color: #569cd6;">#endif &#160;// EDITOR</span></div><br><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #dcdcaa;">Throw</span><span style="color: #d4d4d4;">(</span><span style="color: #ce9178;">"GetActorByLabel is only for testing, i.e. when in EDITOR mode."</span><span style="color: #d4d4d4;">);</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #569cd6;">return</span><span style="color: #d4d4d4;"> </span><span style="color: #569cd6;">nullptr</span><span style="color: #d4d4d4;">;</span></div><div><span style="color: #d4d4d4;">}</span></div></div>
 
 ## Latent Automation Commands
 The code in the test function executes before the map is loaded and before the first frame executes. The test is not complete when the test function returns therefore, it has merely enqueued a series of *latent automation commands* ([Unreal documentation](https://docs.unrealengine.com/en-US/Programming/Automation/TechnicalGuide/index.html)). If we assume the test enqueues no latent commands of its own (like the one above), the test framework will enqueue the following actions (see IntegrationTest.cpp):
@@ -122,15 +80,7 @@ These execute in sequence. Each action can take multiple engine frames to execut
 
 The test can enqueue latent commands of its own:
 
-```cpp
-void IntegrationTest_AlienShootsRepeatedly(FIntegrationTest& T)
-{ 
-    AActor A = GetActorByLabel(ABulletSponge::StaticClass(), n"BulletSponge");
-    ABulletSponge Floor = Cast<ABulletSponge>(A);
-
-    T.AddLatentAutomationCommand(UGetsShotXTimes(Floor, 2));
-}
-```
+<div class="code_block" style="color: #d4d4d4;background-color: #1e1e1e;font-family: 'Terminus (TTF) for Windows', Consolas, 'Courier New', monospace;font-weight: normal;font-size: 14px;line-height: 19px;white-space: pre;"><div><span style="color: #569cd6;">void</span><span style="color: #d4d4d4;"> </span><span style="color: #dcdcaa;">IntegrationTest_AlienShootsRepeatedly</span><span style="color: #d4d4d4;">(</span><span style="color: #4ec9b0;">FIntegrationTest</span><span style="color: #d4d4d4;">&amp; </span><span style="color: #9cdcfe;">T</span><span style="color: #d4d4d4;">)</span></div><div><span style="color: #d4d4d4;">{ </span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #4ec9b0;">AActor</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">A</span><span style="color: #d4d4d4;"> = </span><span style="color: #dcdcaa;">GetActorByLabel</span><span style="color: #d4d4d4;">(</span><span style="color: #4ec9b0;">ABulletSponge</span><span style="color: #d4d4d4;">::</span><span style="color: #dcdcaa;">StaticClass</span><span style="color: #d4d4d4;">(), n</span><span style="color: #ce9178;">"BulletSponge"</span><span style="color: #d4d4d4;">);</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #4ec9b0;">ABulletSponge</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">Floor</span><span style="color: #d4d4d4;"> = </span><span style="color: #569cd6;">Cast</span><span style="color: #d4d4d4;">&lt;</span><span style="color: #4ec9b0;">ABulletSponge</span><span style="color: #d4d4d4;">&gt;(</span><span style="color: #9cdcfe;">A</span><span style="color: #d4d4d4;">);</span></div><br><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #9cdcfe;">T</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">AddLatentAutomationCommand</span><span style="color: #d4d4d4;">(</span><span style="color: #4ec9b0;">UGetsShotXTimes</span><span style="color: #d4d4d4;">(</span><span style="color: #9cdcfe;">Floor</span><span style="color: #d4d4d4;">, </span><span style="color: #b5cea8;">2</span><span style="color: #d4d4d4;">));</span></div><div><span style="color: #d4d4d4;">}</span></div></div>
 
 The action is enqueued using `T.AddLatentAutomationCommand`. The set of latent actions will now be:
 
@@ -142,51 +92,7 @@ The action is enqueued using `T.AddLatentAutomationCommand`. The set of latent a
 
 AddLatentAutomationCommand takes a `ULatentAutomationCommand`:
 
-```cpp
-UCLASS()
-class ABulletSponge : AStaticMeshActor
-{
-    int NumTimesHit = 0;
-
-    UFUNCTION(BlueprintOverride)
-    void BeginPlay()
-    {
-        OnTakeAnyDamage.AddUFunction(this, n"TakeAnyDamage");
-    }
-
-    UFUNCTION()
-    void TakeAnyDamage(AActor DamagedActor, float Damage, const UDamageType DamageType, AController InstigatedBy, AActor DamageCauser)
-    {        
-        NumTimesHit++;
-    }
-}
-
-class UGetsShotXTimes : ULatentAutomationCommand
-{
-    private ABulletSponge BulletSponge;
-    private int ExpectedNumHits;
-
-    UGetsShotXTimes(ABulletSponge Target, int X)
-    {
-        BulletSponge = Target;
-        ExpectedNumHits = X;
-    }
-
-    UFUNCTION(BlueprintOverride)
-    bool Update()
-    {
-        // Note: actors can get DestroyActor'd at any time, so fail nicely if that happens!
-        ensure(System::IsValid(BulletSponge));
-        return BulletSponge.NumTimesHit > ExpectedNumHits;
-    }
-
-    UFUNCTION(BlueprintOverride)
-    FString Describe() const
-    {
-        return BulletSponge.GetPathName() + ": bullet sponge got hit " + BulletSponge.NumTimesHit + "/" + ExpectedNumHits;
-    }
-}
-```
+<div class="code_block" style="color: #d4d4d4;background-color: #1e1e1e;font-family: 'Terminus (TTF) for Windows', Consolas, 'Courier New', monospace;font-weight: normal;font-size: 14px;line-height: 19px;white-space: pre;"><div><span style="color: #4fc1ff;">UCLASS</span><span style="color: #d4d4d4;">()</span></div><div><span style="color: #569cd6;">class</span><span style="color: #d4d4d4;"> </span><span style="color: #4ec9b0;">ABulletSponge</span><span style="color: #d4d4d4;"> : </span><span style="color: #4ec9b0;">AStaticMeshActor</span></div><div><span style="color: #d4d4d4;">{</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #569cd6;">int</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">NumTimesHit</span><span style="color: #d4d4d4;"> = </span><span style="color: #b5cea8;">0</span><span style="color: #d4d4d4;">;</span></div><br><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #4fc1ff;">UFUNCTION</span><span style="color: #d4d4d4;">(</span><span style="color: #569cd6;">BlueprintOverride</span><span style="color: #d4d4d4;">)</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #569cd6;">void</span><span style="color: #d4d4d4;"> </span><span style="color: #dcdcaa;">BeginPlay</span><span style="color: #d4d4d4;">()</span></div><div><span style="color: #d4d4d4;">&#160; &#160; {</span></div><div><span style="color: #d4d4d4;">&#160; &#160; &#160; &#160; </span><span style="color: #9cdcfe;">OnTakeAnyDamage</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">AddUFunction</span><span style="color: #d4d4d4;">(</span><span style="color: #569cd6;">this</span><span style="color: #d4d4d4;">, n</span><span style="color: #ce9178;">"TakeAnyDamage"</span><span style="color: #d4d4d4;">);</span></div><div><span style="color: #d4d4d4;">&#160; &#160; }</span></div><br><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #4fc1ff;">UFUNCTION</span><span style="color: #d4d4d4;">()</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #569cd6;">private</span><span style="color: #d4d4d4;"> </span><span style="color: #569cd6;">void</span><span style="color: #d4d4d4;"> </span><span style="color: #dcdcaa;">TakeAnyDamage</span><span style="color: #d4d4d4;">(</span><span style="color: #4ec9b0;">AActor</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">DamagedActor</span><span style="color: #d4d4d4;">, </span><span style="color: #569cd6;">float32</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">Damage</span><span style="color: #d4d4d4;">, </span><span style="color: #569cd6;">const</span><span style="color: #d4d4d4;"> </span><span style="color: #4ec9b0;">UDamageType</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">DamageType</span><span style="color: #d4d4d4;">, </span><span style="color: #4ec9b0;">AController</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">InstigatedBy</span><span style="color: #d4d4d4;">, </span><span style="color: #4ec9b0;">AActor</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">DamageCauser</span><span style="color: #d4d4d4;">)</span></div><div><span style="color: #d4d4d4;">&#160; &#160; {</span></div><div><span style="color: #d4d4d4;">&#160; &#160; &#160; &#160; </span><span style="color: #9cdcfe;">NumTimesHit</span><span style="color: #d4d4d4;">++;</span></div><div><span style="color: #d4d4d4;">&#160; &#160; }</span></div><div><span style="color: #d4d4d4;">}</span></div><br><div><span style="color: #569cd6;">class</span><span style="color: #d4d4d4;"> </span><span style="color: #4ec9b0;">UGetsShotXTimes</span><span style="color: #d4d4d4;"> : </span><span style="color: #4ec9b0;">ULatentAutomationCommand</span></div><div><span style="color: #d4d4d4;">{</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #569cd6;">private</span><span style="color: #d4d4d4;"> </span><span style="color: #4ec9b0;">ABulletSponge</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">BulletSponge</span><span style="color: #d4d4d4;">;</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #569cd6;">private</span><span style="color: #d4d4d4;"> </span><span style="color: #569cd6;">int</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">ExpectedNumHits</span><span style="color: #d4d4d4;">;</span></div><br><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #4ec9b0;">UGetsShotXTimes</span><span style="color: #d4d4d4;">(</span><span style="color: #4ec9b0;">ABulletSponge</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">Target</span><span style="color: #d4d4d4;">, </span><span style="color: #569cd6;">int</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">X</span><span style="color: #d4d4d4;">)</span></div><div><span style="color: #d4d4d4;">&#160; &#160; {</span></div><div><span style="color: #d4d4d4;">&#160; &#160; &#160; &#160; </span><span style="color: #9cdcfe;">BulletSponge</span><span style="color: #d4d4d4;"> = </span><span style="color: #9cdcfe;">Target</span><span style="color: #d4d4d4;">;</span></div><div><span style="color: #d4d4d4;">&#160; &#160; &#160; &#160; </span><span style="color: #9cdcfe;">ExpectedNumHits</span><span style="color: #d4d4d4;"> = </span><span style="color: #9cdcfe;">X</span><span style="color: #d4d4d4;">;</span></div><div><span style="color: #d4d4d4;">&#160; &#160; }</span></div><br><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #4fc1ff;">UFUNCTION</span><span style="color: #d4d4d4;">(</span><span style="color: #569cd6;">BlueprintOverride</span><span style="color: #d4d4d4;">)</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #569cd6;">bool</span><span style="color: #d4d4d4;"> </span><span style="color: #dcdcaa;">Update</span><span style="color: #d4d4d4;">()</span></div><div><span style="color: #d4d4d4;">&#160; &#160; {</span></div><div><span style="color: #d4d4d4;">&#160; &#160; &#160; &#160; </span><span style="color: #6a9955;">// Note: actors can get DestroyActor'd at any time, so fail nicely if that happens!</span></div><div><span style="color: #d4d4d4;">&#160; &#160; &#160; &#160; </span><span style="color: #dcdcaa;">ensure</span><span style="color: #d4d4d4;">(</span><span style="color: #dcdcaa;">IsValid</span><span style="color: #d4d4d4;">(</span><span style="color: #9cdcfe;">BulletSponge</span><span style="color: #d4d4d4;">));</span></div><div><span style="color: #d4d4d4;">&#160; &#160; &#160; &#160; </span><span style="color: #569cd6;">return</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">BulletSponge</span><span style="color: #d4d4d4;">.</span><span style="color: #9cdcfe;">NumTimesHit</span><span style="color: #d4d4d4;"> &gt; </span><span style="color: #9cdcfe;">ExpectedNumHits</span><span style="color: #d4d4d4;">;</span></div><div><span style="color: #d4d4d4;">&#160; &#160; }</span></div><br><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #4fc1ff;">UFUNCTION</span><span style="color: #d4d4d4;">(</span><span style="color: #569cd6;">BlueprintOverride</span><span style="color: #d4d4d4;">)</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #4ec9b0;">FString</span><span style="color: #d4d4d4;"> </span><span style="color: #dcdcaa;">Describe</span><span style="color: #d4d4d4;">() </span><span style="color: #569cd6;">const</span></div><div><span style="color: #d4d4d4;">&#160; &#160; {</span></div><div><span style="color: #d4d4d4;">&#160; &#160; &#160; &#160; </span><span style="color: #569cd6;">return</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">BulletSponge</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">GetPathName</span><span style="color: #d4d4d4;">() + </span><span style="color: #ce9178;">": bullet sponge got hit "</span><span style="color: #d4d4d4;"> + </span><span style="color: #9cdcfe;">BulletSponge</span><span style="color: #d4d4d4;">.</span><span style="color: #9cdcfe;">NumTimesHit</span><span style="color: #d4d4d4;"> + </span><span style="color: #ce9178;">"/"</span><span style="color: #d4d4d4;"> + </span><span style="color: #9cdcfe;">ExpectedNumHits</span><span style="color: #d4d4d4;">;</span></div><div><span style="color: #d4d4d4;">&#160; &#160; }</span></div><div><span style="color: #d4d4d4;">}</span></div></div>
 
 The game engine will keep ticking as long as Update returns false. This means you can wait on any condition you can think of. The default timeout is five seconds though, so you can't wait for too long.
 
@@ -201,27 +107,7 @@ To run integration tests from the command line, run the same line as for unit te
 ## Complex Integration Tests
 You can also generate test cases dynamically:
 
-```cpp
-void ComplexIntegrationTest_PotionsAreTooStrongForKnight_GetTests(TArray<FString>& OutTestCommands)
-{
-     for (APotion Potion: MyGame::GetPotionRegistry().GetAllPotions())
-     {
-         OutTestCommands.Add(Potion.GetName().ToString());
-     }
-}
-
-void ComplexIntegrationTest_PotionsAreTooStrongForKnight(FIntegrationTest& T)
-{
-    FString PotionName = T.GetParam();
-    APotion Potion = MyGame::GetPotionRegistry().LookupPotion(PotionName);
-    AKnight Knight = Cast<AKnight>(GetActorByLabel(AKnight::StaticClass(), n"Knight"));
-    AActor PotionSeller = GetActorByLabel(AActor::StaticClass(), n"PotionSeller");
-
-    // Order the knight to walk over to the potion seller and try to buy a potion.
-    Knight.BuyPotionFrom(PotionSeller, Potion);
-    T.AddLatentAutomationCommand(UExpectResponse("My potions are too strong for you traveller.", Knight, PotionSeller));
-}
-```
+<div class="code_block" style="color: #d4d4d4;background-color: #1e1e1e;font-family: 'Terminus (TTF) for Windows', Consolas, 'Courier New', monospace;font-weight: normal;font-size: 14px;line-height: 19px;white-space: pre;"><div><span style="color: #569cd6;">void</span><span style="color: #d4d4d4;"> </span><span style="color: #dcdcaa;">ComplexIntegrationTest_PotionsAreTooStrongForKnight_GetTests</span><span style="color: #d4d4d4;">(</span><span style="color: #4ec9b0;">TArray</span><span style="color: #d4d4d4;">&lt;</span><span style="color: #4ec9b0;">FString</span><span style="color: #d4d4d4;">&gt;&amp; </span><span style="color: #9cdcfe;">OutTestCommands</span><span style="color: #d4d4d4;">)</span></div><div><span style="color: #d4d4d4;">{</span></div><div><span style="color: #d4d4d4;">&#160; &#160; &#160;</span><span style="color: #569cd6;">for</span><span style="color: #d4d4d4;"> (</span><span style="color: #4ec9b0;">APotion</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">Potion</span><span style="color: #d4d4d4;">: </span><span style="color: #4ec9b0;">MyGame</span><span style="color: #d4d4d4;">::</span><span style="color: #dcdcaa;">GetPotionRegistry</span><span style="color: #d4d4d4;">().</span><span style="color: #dcdcaa;">GetAllPotions</span><span style="color: #d4d4d4;">())</span></div><div><span style="color: #d4d4d4;">&#160; &#160; &#160;{</span></div><div><span style="color: #d4d4d4;">&#160; &#160; &#160; &#160; &#160;</span><span style="color: #9cdcfe;">OutTestCommands</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">Add</span><span style="color: #d4d4d4;">(</span><span style="color: #9cdcfe;">Potion</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">GetName</span><span style="color: #d4d4d4;">().</span><span style="color: #dcdcaa;">ToString</span><span style="color: #d4d4d4;">());</span></div><div><span style="color: #d4d4d4;">&#160; &#160; &#160;}</span></div><div><span style="color: #d4d4d4;">}</span></div><br><div><span style="color: #569cd6;">void</span><span style="color: #d4d4d4;"> </span><span style="color: #dcdcaa;">ComplexIntegrationTest_PotionsAreTooStrongForKnight</span><span style="color: #d4d4d4;">(</span><span style="color: #4ec9b0;">FIntegrationTest</span><span style="color: #d4d4d4;">&amp; </span><span style="color: #9cdcfe;">T</span><span style="color: #d4d4d4;">)</span></div><div><span style="color: #d4d4d4;">{</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #4ec9b0;">FString</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">PotionName</span><span style="color: #d4d4d4;"> = </span><span style="color: #9cdcfe;">T</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">GetParam</span><span style="color: #d4d4d4;">();</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #4ec9b0;">APotion</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">Potion</span><span style="color: #d4d4d4;"> = </span><span style="color: #4ec9b0;">MyGame</span><span style="color: #d4d4d4;">::</span><span style="color: #dcdcaa;">GetPotionRegistry</span><span style="color: #d4d4d4;">().</span><span style="color: #dcdcaa;">LookupPotion</span><span style="color: #d4d4d4;">(</span><span style="color: #9cdcfe;">PotionName</span><span style="color: #d4d4d4;">);</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #4ec9b0;">AKnight</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">Knight</span><span style="color: #d4d4d4;"> = </span><span style="color: #569cd6;">Cast</span><span style="color: #d4d4d4;">&lt;</span><span style="color: #4ec9b0;">AKnight</span><span style="color: #d4d4d4;">&gt;(</span><span style="color: #dcdcaa;">GetActorByLabel</span><span style="color: #d4d4d4;">(</span><span style="color: #4ec9b0;">AKnight</span><span style="color: #d4d4d4;">::</span><span style="color: #dcdcaa;">StaticClass</span><span style="color: #d4d4d4;">(), n</span><span style="color: #ce9178;">"Knight"</span><span style="color: #d4d4d4;">));</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #4ec9b0;">AActor</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">PotionSeller</span><span style="color: #d4d4d4;"> = </span><span style="color: #dcdcaa;">GetActorByLabel</span><span style="color: #d4d4d4;">(</span><span style="color: #4ec9b0;">AActor</span><span style="color: #d4d4d4;">::</span><span style="color: #dcdcaa;">StaticClass</span><span style="color: #d4d4d4;">(), n</span><span style="color: #ce9178;">"PotionSeller"</span><span style="color: #d4d4d4;">);</span></div><br><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #6a9955;">// Order the knight to walk over to the potion seller and try to buy a potion.</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #9cdcfe;">Knight</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">BuyPotionFrom</span><span style="color: #d4d4d4;">(</span><span style="color: #9cdcfe;">PotionSeller</span><span style="color: #d4d4d4;">, </span><span style="color: #9cdcfe;">Potion</span><span style="color: #d4d4d4;">);</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #9cdcfe;">T</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">AddLatentAutomationCommand</span><span style="color: #d4d4d4;">(</span><span style="color: #4ec9b0;">UExpectResponse</span><span style="color: #d4d4d4;">(</span><span style="color: #ce9178;">"My potions are too strong for you traveller."</span><span style="color: #d4d4d4;">, </span><span style="color: #9cdcfe;">Knight</span><span style="color: #d4d4d4;">, </span><span style="color: #9cdcfe;">PotionSeller</span><span style="color: #d4d4d4;">));</span></div><div><span style="color: #d4d4d4;">}</span></div></div>
 
 If we assume you have three potions in your potion registry, this generates three test cases:
 

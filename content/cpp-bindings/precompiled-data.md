@@ -9,14 +9,14 @@ Normally, when the engine starts up the angelscript plugin will read all `.as` f
 your Project's script folder and parse and compile them. This can take a relatively long
 amount of time, especially on platforms with slower CPUs and hard drives.
 
-In order to improve startup time in packade builds, it is possible to instruct the
+In order to improve startup time in packaged builds, it is possible to instruct the
 packaged binary to emit a precompiled script cache. When a precompiled script
 cache file is present, the plugin will load the compiled script bytecode directly
 from the cache, skipping the need to load, parse and compile all the script
 files.
 
 In addition to this, the plugin is able to generate a directory of C++ code files
-that function the same as the angelscript bytecode for the compiled script. Recompiling
+that function the same as the angelscript bytecode for your scripts. Recompiling
 the game binary with these C++ files included in it will then hook into angelscript's
 JIT compilation system to replace virtual machine bytecode execution with native C++.
 This significantly improves runtime execution speed of script code.
@@ -33,7 +33,8 @@ This generates a file `ProjectName/Script/PrecompiledScript.Cache` that should b
 
 The next time you run your packaged game, script will be loaded from the precompiled cache instead of from the `.as` scripts.
 
-In addition, the generate step will output a folder called `AS_JITTED_CODE/` with a file in it for every script file that was compiled.
+## Transpiled C++ Code
+In addition to the cache, the generate step will also output a folder called `AS_JITTED_CODE/` with a file in it for every script file that was compiled.
 
 You can copy this folder into your project's source folder and then rebuild the `.exe` for your game in the appropriate configuration.
 

@@ -147,6 +147,10 @@ h1 {
 	font-size: 170%;
 }
 
+h1 + p {
+	margin-top: -1em;
+}
+
 h2 {
 	font-size: 140%;
 	margin-top: 1.5em;
@@ -157,5 +161,13 @@ h1 + h2 {
 }
 
 h2 + p {
+	margin-top: -1em;
+}
+
+h2 + h3 {
+	margin-top: -1em;
+}
+
+h3 + p {
 	margin-top: -1em;
 }

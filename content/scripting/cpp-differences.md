@@ -15,15 +15,9 @@ Any variable declared with a `UObject` type is automatically an object reference
 This is similar to how object reference variables work in blueprint.
 There is no `->` arrow operator in script, everything happens with `.` dots.
 
-> **Note:** Unlike in C++, it is _not_ necessary to declare a property as `UPROPERTY()` in order to avoid it being garbage collected. All object references in script are automatically inserted into the GC.
+> **Note:** Unlike in C++, it is **not** necessary to declare a property as `UPROPERTY()` in order to avoid it being garbage collected. All object references in script are automatically inserted into the GC.
 
-```cpp
-void TeleportActorToOtherActor(AActor ActorReference, AActor TeleportToActor)
-{
-	FTransform TeleportToTransform = TeleportToActor.GetActorTransform();
-	ActorReference.SetActorTransform(TeleportToTransform);
-}
-```
+<div class="code_block" style="color: #d4d4d4;background-color: #1e1e1e;font-family: 'Terminus (TTF) for Windows', Consolas, 'Courier New', monospace;font-weight: normal;font-size: 14px;line-height: 19px;white-space: pre;"><div><span style="color: #569cd6;">void</span><span style="color: #d4d4d4;"> </span><span style="color: #dcdcaa;">TeleportActorToOtherActor</span><span style="color: #d4d4d4;">(</span><span style="color: #4ec9b0;">AActor</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">ActorReference</span><span style="color: #d4d4d4;">, </span><span style="color: #4ec9b0;">AActor</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">TeleportToActor</span><span style="color: #d4d4d4;">)</span></div><div><span style="color: #d4d4d4;">{</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #4ec9b0;">FTransform</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">TeleportToTransform</span><span style="color: #d4d4d4;"> = </span><span style="color: #9cdcfe;">TeleportToActor</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">GetActorTransform</span><span style="color: #d4d4d4;">();</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #9cdcfe;">ActorReference</span><span style="color: #d4d4d4;">.</span><span style="color: #dcdcaa;">SetActorTransform</span><span style="color: #d4d4d4;">(</span><span style="color: #9cdcfe;">TeleportToTransform</span><span style="color: #d4d4d4;">);</span></div><div><span style="color: #d4d4d4;">}</span></div></div>
 
 ## Default Accessibility for Properties
 `UPROPERTY()` variables are `EditAnywhere` and `BlueprintReadWrite` by default. This can be overridden by specifying `NotBlueprintCallable` or `NotEditable`.
@@ -37,21 +31,7 @@ Instead of using object constructors, which can run at unpredictable times durin
 
 For setting values on subobjects, use the `default` keyword:
 
-```cpp
-class AExampleActor : AActor
-{
-	// Set default values for class properties in the class body
-	UPROPERTY()
-	float ConfigurableValue = 5.0;
-
-	// Set default values for subobjects with `default` statements
-	UPROPERTY(DefaultComponent)
-	UCapsuleComponent CapsuleComponent;
-	default CapsuleComponent.CapsuleHalfHeight = 88.0;
-	default CapsuleComponent.CapsuleRadius = 40.0;
-	default CapsuleComponent.bGenerateOverlapEvents = true;
-}
-```
+<div class="code_block" style="color: #d4d4d4;background-color: #1e1e1e;font-family: 'Terminus (TTF) for Windows', Consolas, 'Courier New', monospace;font-weight: normal;font-size: 14px;line-height: 19px;white-space: pre;"><div><span style="color: #569cd6;">class</span><span style="color: #d4d4d4;"> </span><span style="color: #4ec9b0;">AExampleActor</span><span style="color: #d4d4d4;"> : </span><span style="color: #4ec9b0;">AActor</span></div><div><span style="color: #d4d4d4;">{</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #6a9955;">// Set default values for class properties in the class body</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #4fc1ff;">UPROPERTY</span><span style="color: #d4d4d4;">()</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #569cd6;">float</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">ConfigurableValue</span><span style="color: #d4d4d4;"> = </span><span style="color: #b5cea8;">5.0</span><span style="color: #d4d4d4;">;</span></div><br><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #6a9955;">// Set default values for subobjects with `default` statements</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #4fc1ff;">UPROPERTY</span><span style="color: #d4d4d4;">(</span><span style="color: #569cd6;">DefaultComponent</span><span style="color: #d4d4d4;">)</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #4ec9b0;">UCapsuleComponent</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">CapsuleComponent</span><span style="color: #d4d4d4;">;</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #569cd6;">default</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">CapsuleComponent</span><span style="color: #d4d4d4;">.</span><span style="color: #9cdcfe;">CapsuleHalfHeight</span><span style="color: #d4d4d4;"> = </span><span style="color: #b5cea8;">88.0</span><span style="color: #d4d4d4;">;</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #569cd6;">default</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">CapsuleComponent</span><span style="color: #d4d4d4;">.</span><span style="color: #9cdcfe;">CapsuleRadius</span><span style="color: #d4d4d4;"> = </span><span style="color: #b5cea8;">40.0</span><span style="color: #d4d4d4;">;</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #569cd6;">default</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">CapsuleComponent</span><span style="color: #d4d4d4;">.</span><span style="color: #9cdcfe;">bGenerateOverlapEvents</span><span style="color: #d4d4d4;"> = </span><span style="color: #569cd6;">true</span><span style="color: #d4d4d4;">;</span></div><div><span style="color: #d4d4d4;">}</span></div></div>
 
 ## Floating Point Width
 With Unreal 5.0, Epic has started using `double`s for all gameplay-related vectors, rotators, etc.
@@ -60,8 +40,4 @@ Rather than confuse people that are used to working with `float` in blueprint, t
 The angelscript integration follows this decision, meaning that when you declare a `float` in script, it is actually a 64-bit double value.
 To create a floating-point variable with a specific width, you can explicitly use the `float32` or `float64` types.
 
-```cpp
-float ValueDouble = 1.0; // <-- This is a 64-bit double-precision float
-float32 ValueSingle = 1.f; // <-- This is a 32-bit single-precision float
-float64 ValueAlsoDouble = 1.0; // <-- This is *also* a 64-bit double-precision float
-```
+<div class="code_block" style="color: #d4d4d4;background-color: #1e1e1e;font-family: 'Terminus (TTF) for Windows', Consolas, 'Courier New', monospace;font-weight: normal;font-size: 14px;line-height: 19px;white-space: pre;"><div><span style="color: #569cd6;">float</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">ValueDouble</span><span style="color: #d4d4d4;"> = </span><span style="color: #b5cea8;">1.0</span><span style="color: #d4d4d4;">; </span><span style="color: #6a9955;">// &lt;-- This is a 64-bit double-precision float</span></div><div><span style="color: #569cd6;">float32</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">ValueSingle</span><span style="color: #d4d4d4;"> = </span><span style="color: #b5cea8;">1.f</span><span style="color: #d4d4d4;">; </span><span style="color: #6a9955;">// &lt;-- This is a 32-bit single-precision float</span></div><div><span style="color: #569cd6;">float64</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">ValueAlsoDouble</span><span style="color: #d4d4d4;"> = </span><span style="color: #b5cea8;">1.0</span><span style="color: #d4d4d4;">; </span><span style="color: #6a9955;">// &lt;-- This is *also* a 64-bit double-precision float</span></div></div>
