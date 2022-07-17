@@ -45,15 +45,6 @@ Categories help organize your properties in the editor UI:
 
 ![](/img/property-categories.png)
 
-# Structs
-Classes declared in script are always types of `UObject`, and are part of unreal's normal object system and garbage collector.
-
-You can also make structs in script, which behave as value types:
-
-<div class="code_block" style="color: #d4d4d4;background-color: #1e1e1e;font-family: 'Terminus (TTF) for Windows', Consolas, 'Courier New', monospace;font-weight: normal;font-size: 14px;line-height: 19px;white-space: pre;"><div><span style="color: #569cd6;">struct</span><span style="color: #d4d4d4;"> </span><span style="color: #4ec9b0;">FExampleStruct</span></div><div><span style="color: #d4d4d4;">{</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #6a9955;">/* Properties with UPROPERTY() in a struct will be accessible in blueprint. */</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #4fc1ff;">UPROPERTY</span><span style="color: #d4d4d4;">()</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #569cd6;">float</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">ExampleNumber</span><span style="color: #d4d4d4;"> = </span><span style="color: #b5cea8;">4.0</span><span style="color: #d4d4d4;">;</span></div><br><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #4fc1ff;">UPROPERTY</span><span style="color: #d4d4d4;">()</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #4ec9b0;">FString</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">ExampleString</span><span style="color: #d4d4d4;"> = </span><span style="color: #ce9178;">"Example String"</span><span style="color: #d4d4d4;">;</span></div><br><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #6a9955;">/* Properties without UPROPERTY() will still be in the struct, but cannot be seen by blueprint. */</span></div><div><span style="color: #d4d4d4;">&#160; &#160; </span><span style="color: #569cd6;">float</span><span style="color: #d4d4d4;"> </span><span style="color: #9cdcfe;">ExampleHiddenNumber</span><span style="color: #d4d4d4;"> = </span><span style="color: #b5cea8;">3.0</span><span style="color: #d4d4d4;">;</span></div><div><span style="color: #d4d4d4;">};</span></div></div>
-
-> **Note:** Unlike classes, structs cannot have `UFUNCTION()`s. They _can_ have plain script methods on them however, although they will not be visible outside of scripts.
-
 # Property Accessor Functions
 Script methods that start with `Get..()` or `Set..()` can use the `property` keyword to allow them to be used as if they are properties.
 When the property value is used within other code, the appropriate Get or Set function is automatically called:
