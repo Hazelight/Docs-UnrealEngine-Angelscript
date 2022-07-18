@@ -4,7 +4,7 @@ weight = 140
 +++
 
 # Subsystems
-Subsystems are one of unreal's ways to collect common functionality in easily accessible singletons.
+Subsystems are one of unreal's ways to collect common functionality into easily accessible singletons.
 See the [Unreal Documentation on Programming Subsystems](https://docs.unrealengine.com/5.0/en-US/programming-subsystems/) for more details.
 
 ## Using a Subsystem

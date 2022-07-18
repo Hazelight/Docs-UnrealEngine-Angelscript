@@ -21,7 +21,7 @@ With this plugin you can write gameplay in a customized version of [Angelscript]
 Some key benefits that this plugin helps achieve:
 * **Rapid Iteration** - Scripts can be reloaded instantly in the editor, letting developers focus on creating cool shit instead of waiting for compiles and editor restarts.
 * **Improved Cooperation** - Because programmers and designers are no longer separated by the C++/Blueprint divide, they can work closely together using the same systems and tools.
-* **Performance** - Angelscript performs *significantly* better than blueprint for game scripting, and approaches native C++ performance when using [transpiled scripts](/cpp-bindings/precompiled-data) in a shipping build.
+* **Performance** - Angelscript performs significantly better than blueprint for game scripting, and approaches native C++ performance when using [transpiled scripts](/cpp-bindings/precompiled-data) in a shipping build.
 
 ## Features
 ### Familiar but Simplified
