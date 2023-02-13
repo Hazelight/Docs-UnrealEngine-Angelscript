@@ -27,7 +27,7 @@ The functions for function libraries in script are automatically taken from blue
 Before binding, the angelscript plugin simplifies the name of the class to make a shorter namespace.
 For example, the functions in the `System::` namespace are automatically sourced from the `UKismetSystemLibrary` class in C++.
 
-Common prefixes and suffix that get stripped automatically are:
+Common prefixes and suffixes that get stripped automatically are:
 * U...Statics
 * U...Library
 * U...FunctionLibrary
