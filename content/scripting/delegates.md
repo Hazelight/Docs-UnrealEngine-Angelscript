@@ -18,7 +18,7 @@ From there, you can pass around values of your delegate type, bind them, and exe
 > Functions bound to delegates are required to be declared as `UFUNCTION()`.
 
 # Events
-Events are similar to delegates, but can have multiple functions added to it, rather than always being bound to one function.
+Events are similar to delegates, but can have multiple functions added to them, rather than always being bound to only one function.
 
 Declare events with the `event` keyword in global scope, then use `AddUFunction()` and `Broadcast()`:
 
