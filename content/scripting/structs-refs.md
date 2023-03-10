@@ -40,6 +40,6 @@ When you want a struct parameter to be an ouput value only, declare the referenc
 As an implementation detail: script functions never take struct parameters by value.  
 When you declare a struct parameter, it is internally implemented as a const reference, as if you added `const &`.
 
-This means there is no difference between a `FVector` parameter and a `const FVector&` parameter. Both behave exactly the same in performance and semantics.
+This means there is no difference between an `FVector` parameter and a `const FVector&` parameter. Both behave exactly the same in performance and semantics.
 
 This choice was made to improve script performance and avoid having to instruct gameplay scripters to write `const &` on all their parameters.
