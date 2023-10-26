@@ -119,6 +119,8 @@ Here, you can find more detailed example scripts that you can read or copy to yo
 
 * You can also look through the [Examples Folder on Github](https://github.com/Hazelight/UnrealEngine-Angelscript/tree/angelscript-master/Script-Examples/Examples).
 
+* You can also use the [AngelScript FPS Starter Template](https://github.com/zuru33/UnrealEngine-Angelscript-FpsStarter), which was ported from the C++ FPS starter template.
+
 # Further Reading
 More documentation is available on this website in the sidebar to the left.
 
