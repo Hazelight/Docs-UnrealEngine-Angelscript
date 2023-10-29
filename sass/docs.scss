@@ -171,3 +171,13 @@ h2 + h3 {
 h3 + p {
 	margin-top: -1em;
 }
+
+a[href^="http://"]:not([href*="127.0.0.1"]):not([href*="angelscript.hazelight.se"]):after,
+a[href^="https://"]:not([href*="127.0.0.1"]):not([href*="angelscript.hazelight.se"]):after {
+  content: "🔗";
+  margin-left: 0.1em;
+  margin-right: 0.25em;
+  font-size: 60%;
+  position: relative;
+  top: -0.4em;
+}

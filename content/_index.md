@@ -6,7 +6,9 @@ title = "Index"
 UnrealEngine-Angelscript is a set of engine modifications and a plugin for UE5 that integrates a
 full-featured scripting language.
 It is actively developed by [Hazelight](http://hazelight.se), creators of [It Takes Two](https://www.ea.com/games/it-takes-two), which was shipped with the majority of its gameplay written in angelscript.
-The unreal plugin that integrates angelscript is open source, and has received contributions from several studios in Stockholm and globally.
+More recently, [The Talos Principle 2](https://www.thetalosprinciple.com/) was also shipped by [Croteam](http://www.croteam.com/) using UnrealEngine-Angelscript.
+
+The unreal plugin that integrates angelscript is open source, and has received contributions from studios in Stockholm and globally.
 
 See [Scripting Introduction](getting-started/introduction) for an introduction to the scripting language.
 
