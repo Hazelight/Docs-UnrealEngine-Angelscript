@@ -14,15 +14,11 @@ To get source code access, follow this guide from Epic Games:
 
 
 ## 2. Downloading UnrealEngine-Angelscript
-You can download a precompiled editor binary with angelscript from the
-[Releases Pages](https://github.com/Hazelight/UnrealEngine-Angelscript/releases)
-on github.
-
-Alternatively, clone the [GitHub Repository](https://github.com/Hazelight/UnrealEngine-Angelscript)
+After getting access to unreal source code, clone the [UnrealEngine-Angelscript GitHub Repository](https://github.com/Hazelight/UnrealEngine-Angelscript)
 and build the unreal editor using visual studio as usual.
 
-Note that you will need to build from source yourself if you want to use any additional plugins.
-This fork will not be compatible with any binary plugin distributions from the unreal marketplace.
+Note that any additional plugins you want to add to the engine need to be built from source.
+This fork is not be compatible with pre-built binary plugins.
 
 
 ## 3. Installing the Visual Studio Code Extension
