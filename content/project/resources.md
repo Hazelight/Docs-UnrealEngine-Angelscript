@@ -12,6 +12,7 @@ weight = 15
 * [Split Fiction](https://www.ea.com/games/split-fiction/split-fiction), by [Hazelight](https://hazelight.se) (2025)
 * [The Talos Principle: Reawakened](https://www.thetalosprinciple.com/reawakened), by [Croteam](http://www.croteam.com/) (2025)
 * [ARC Raiders](https://www.arcraiders.com/), by [Embark Studios](https://www.embark-studios.com/) (2025)
+* [LORT](https://store.steampowered.com/app/2956680/LORT/), by [Big Distraction](https://www.bigdistraction.com/) (2026)
 
 ## Documentation and Examples
 * [Creating Widgets with Unreal & Angelscript](https://www.predictable-paul.com/blog/unreal-angelscript-widgets/)  
