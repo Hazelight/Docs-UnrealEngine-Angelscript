@@ -93,9 +93,6 @@ Similarly, to get all actors of a particular type that are currently in the worl
 
 <div class="code_block" style="color: #d4d4d4;background-color: #1e1e1e;font-family: 'Terminus (TTF) for Windows', Consolas, 'Courier New', monospace;font-weight: normal;font-size: 14px;line-height: 19px;white-space: pre;"><div><span style="color: #6a9955;">// Find all niagara actors currently in the level</span></div><div><span style="color: #4ec9b0;">TArray</span><span style="color: #d4d4d4;">&lt;</span><span style="color: #4ec9b0;">ANiagaraActor</span><span style="color: #d4d4d4;">&gt; </span><span style="color: #9cdcfe;">NiagaraActors</span><span style="color: #d4d4d4;">;</span></div><div><span style="color: #dcdcaa;">GetAllActorsOfClass</span><span style="color: #d4d4d4;">(</span><span style="color: #9cdcfe;">NiagaraActors</span><span style="color: #d4d4d4;">);</span></div></div>
 
-> **Note:** Getting all actors of a class requires iterating all actors in the level, and should not be used from performance-sensitive contexts.
-> That is, try running it once and storing the value rather than using it every tick.
-
 ## Override Components
 Unreal provides a mechanism for overriding one of a parent actor class' default components to use a child component class instead of the one specified on the parent actor.
 In script, this can be accessed by using the `OverrideComponent` specifier:
