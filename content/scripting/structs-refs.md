@@ -43,3 +43,12 @@ When you declare a struct parameter, it is internally implemented as a const ref
 This means there is no difference between an `FVector` parameter and a `const FVector&` parameter. Both behave exactly the same in performance and semantics.
 
 This choice was made to improve script performance and avoid having to instruct gameplay scripters to write `const &` on all their parameters.
+
+## Serialization and replication of fields
+Even if fields in structs are not annotated with `UPROPERTY()` they are still registered as such internally by Angelscript. That implies that by default, all fields of a struct are serialized and replicated unless explicitly specified using `UPROPERTY(Transient)` and `UPROPERTY(NotReplicated)`.
+  
+To mirror the behaviour of a missing `UPROPERTY()` annotation as in C++, two project settings allow control over how struct fields without `UPROPERTY()` should behave:
+
+* `Mark Non UProperty Properties as Transient`
+* `Mark Non UProperty Properties as Not Replicated`
+
