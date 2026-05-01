@@ -28,3 +28,8 @@ Install visual studio code from [https://code.visualstudio.com/](https://code.vi
 
 Then install the [Unreal Angelscript Extension](https://marketplace.visualstudio.com/items?itemName=Hazelight.unreal-angelscript)
 from the marketplace, or search for 'Unreal Angelscript' in the extensions sidebar within Visual Studio Code.
+
+### Additional instructions for macOS
+For Unreal Editor to find Visual Studio Code, the command needs to be added to your PATH.
+
+You can do so by opening the command palette (Command + Shift + P) and running `>Shell Command: Install 'code' command in Path`.
